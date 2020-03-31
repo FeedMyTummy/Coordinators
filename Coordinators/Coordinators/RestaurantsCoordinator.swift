@@ -1,5 +1,5 @@
 //
-//  MainCoordinator.swift
+//  RestaurantsCoordinator.swift
 //  Coordinators
 //
 //  Created by Nicolas Silva on 3/31/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
+class RestaurantsCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -18,17 +18,10 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let mainVC = ViewController.make()
-        
-        mainVC.coordinator = self
-        
-        navigationController.pushViewController(mainVC, animated: false)
-    }
-    
-    func gotoRestaurantVC() {
         let restaurantsVC = RestaurantsVC.make()
         restaurantsVC.coordinator = self
         
         navigationController.pushViewController(restaurantsVC, animated: true)
     }
+    
 }

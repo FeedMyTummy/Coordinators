@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func goToRestaurantsVC(_ sender: Any) {
-        coordinator?.gotoRestaurantVC()
+        coordinator?.restaurantsSubscription()
     }
     
 }

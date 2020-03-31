@@ -10,7 +10,7 @@ import UIKit
 
 class RestaurantsVC: UIViewController {
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: RestaurantsCoordinator?
     
     static func make() -> RestaurantsVC {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))

@@ -16,6 +16,7 @@
 		840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A91992433ACBA00796EE3 /* Coordinator.swift */; };
 		840A919C2433AD6700796EE3 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A919B2433AD6700796EE3 /* MainCoordinator.swift */; };
 		840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A919D2433B21400796EE3 /* RestaurantsVC.swift */; };
+		840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		840A91992433ACBA00796EE3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		840A919B2433AD6700796EE3 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		840A919D2433B21400796EE3 /* RestaurantsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsVC.swift; sourceTree = "<group>"; };
+		840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		840A91842433AC9900796EE3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				840A919F2433C55300796EE3 /* Coordinators */,
 				840A91852433AC9900796EE3 /* AppDelegate.swift */,
 				840A91872433AC9900796EE3 /* SceneDelegate.swift */,
 				840A91892433AC9900796EE3 /* ViewController.swift */,
@@ -69,9 +72,17 @@
 				840A918E2433AC9F00796EE3 /* Assets.xcassets */,
 				840A91902433AC9F00796EE3 /* LaunchScreen.storyboard */,
 				840A91932433AC9F00796EE3 /* Info.plist */,
+				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		840A919F2433C55300796EE3 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
 				840A91992433ACBA00796EE3 /* Coordinator.swift */,
 				840A919B2433AD6700796EE3 /* MainCoordinator.swift */,
-				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
+				840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -151,6 +162,7 @@
 				840A918A2433AC9900796EE3 /* ViewController.swift in Sources */,
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
 				840A919C2433AD6700796EE3 /* MainCoordinator.swift in Sources */,
+				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
 				840A91882433AC9900796EE3 /* SceneDelegate.swift in Sources */,
 				840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */,
 			);
