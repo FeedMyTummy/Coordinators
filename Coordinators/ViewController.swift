@@ -15,14 +15,14 @@ class ViewController: UIViewController {
     static func make() -> ViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    @IBAction func goToRestaurantsVC(_ sender: Any) {
+    @IBAction private func goToRestaurantsVC(_ sender: Any) {
         coordinator?.gotoRestaurantVC()
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 
 class MainCoordinator: Coordinator {
+    
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -20,7 +21,6 @@ class MainCoordinator: Coordinator {
         let mainVC = ViewController.make()
         
         mainVC.coordinator = self
-        navigationController.setNavigationBarHidden(true, animated: false)
         
         navigationController.pushViewController(mainVC, animated: false)
     }
@@ -29,7 +29,6 @@ class MainCoordinator: Coordinator {
         let restaurantsVC = RestaurantsVC.make()
         restaurantsVC.coordinator = self
         
-        navigationController.setNavigationBarHidden(false, animated: true)
         navigationController.pushViewController(restaurantsVC, animated: true)
     }
 }
