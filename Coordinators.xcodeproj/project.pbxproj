@@ -65,14 +65,13 @@
 			isa = PBXGroup;
 			children = (
 				840A919F2433C55300796EE3 /* Coordinators */,
+				840A91A22433C73B00796EE3 /* Controllers */,
 				840A91852433AC9900796EE3 /* AppDelegate.swift */,
 				840A91872433AC9900796EE3 /* SceneDelegate.swift */,
-				840A91892433AC9900796EE3 /* ViewController.swift */,
 				840A918B2433AC9900796EE3 /* Main.storyboard */,
 				840A918E2433AC9F00796EE3 /* Assets.xcassets */,
 				840A91902433AC9F00796EE3 /* LaunchScreen.storyboard */,
 				840A91932433AC9F00796EE3 /* Info.plist */,
-				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -85,6 +84,15 @@
 				840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		840A91A22433C73B00796EE3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				840A91892433AC9900796EE3 /* ViewController.swift */,
+				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

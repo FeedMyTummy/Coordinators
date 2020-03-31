@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantsCoordinator: Coordinator {
     
+    weak var parentCoordinator: MainCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     

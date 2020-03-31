@@ -27,6 +27,7 @@ class MainCoordinator: Coordinator {
     
     func restaurantsSubscription() {
         let child = RestaurantsCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
