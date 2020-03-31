@@ -9,12 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    weak var coordinator: MainCoordinator?
+    
+    static func make() -> ViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
 
-
+    @IBAction func goToRestaurantsVC(_ sender: Any) {
+        coordinator?.gotoRestaurantVC()
+    }
+    
 }
 
