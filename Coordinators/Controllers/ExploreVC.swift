@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ExploreVC: UIViewController {
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: ExploreCoordinator?
     
-    static func make() -> ViewController {
+    static func make() -> ExploreVC {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
@@ -20,10 +20,6 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-
-    @IBAction private func goToRestaurantsVC(_ sender: Any) {
-        coordinator?.restaurantsSubscription()
     }
     
 }
