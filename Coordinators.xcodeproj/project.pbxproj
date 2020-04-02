@@ -18,6 +18,11 @@
 		840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A919D2433B21400796EE3 /* RestaurantsVC.swift */; };
 		840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */; };
 		84351D682434EF72006A9438 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84351D672434EF72006A9438 /* MainTabBarController.swift */; };
+		844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E42436919D0058E554 /* SettingsCoordinator.swift */; };
+		844A66E72436920E0058E554 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E62436920E0058E554 /* SettingsVC.swift */; };
+		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
+		844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EA2436932D0058E554 /* AuthenticationVC.swift */; };
+		844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		840A919D2433B21400796EE3 /* RestaurantsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsVC.swift; sourceTree = "<group>"; };
 		840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCoordinator.swift; sourceTree = "<group>"; };
 		84351D672434EF72006A9438 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		844A66E42436919D0058E554 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		844A66E62436920E0058E554 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		844A66EA2436932D0058E554 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
+		844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,7 @@
 				840A918E2433AC9F00796EE3 /* Assets.xcassets */,
 				840A91902433AC9F00796EE3 /* LaunchScreen.storyboard */,
 				840A91932433AC9F00796EE3 /* Info.plist */,
+				844A66E8243692BC0058E554 /* Database.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -82,8 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				840A91992433ACBA00796EE3 /* Coordinator.swift */,
-				840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */,
 				840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */,
+				840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */,
+				844A66E42436919D0058E554 /* SettingsCoordinator.swift */,
+				844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -94,6 +107,8 @@
 				840A91892433AC9900796EE3 /* ExploreVC.swift */,
 				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
 				84351D672434EF72006A9438 /* MainTabBarController.swift */,
+				844A66E62436920E0058E554 /* SettingsVC.swift */,
+				844A66EA2436932D0058E554 /* AuthenticationVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,13 +185,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */,
+				844A66E9243692BC0058E554 /* Database.swift in Sources */,
+				844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */,
 				840A918A2433AC9900796EE3 /* ExploreVC.swift in Sources */,
 				84351D682434EF72006A9438 /* MainTabBarController.swift in Sources */,
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
+				844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */,
+				844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,
 				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
 				840A91882433AC9900796EE3 /* SceneDelegate.swift in Sources */,
 				840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */,
+				844A66E72436920E0058E554 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

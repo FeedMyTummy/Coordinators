@@ -20,7 +20,8 @@ class RestaurantsCoordinator: Coordinator {
     func start() {
         let restaurantsVC = RestaurantsVC.make()
         restaurantsVC.coordinator = self
-
+        restaurantsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(restaurantsVC, animated: true)
     }
     

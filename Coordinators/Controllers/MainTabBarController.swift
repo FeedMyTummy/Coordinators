@@ -12,14 +12,18 @@ class MainTabBarController: UITabBarController {
     
     let restaurants = RestaurantsCoordinator(navigationController: UINavigationController())
     let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
+    let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         restaurants.start()
         exploreCoordinator.start()
+        settingsCoordinator.start()
+        
         viewControllers = [restaurants.navigationController,
-                           exploreCoordinator.navigationController]
+                           exploreCoordinator.navigationController,
+                           settingsCoordinator.navigationController]
     }
     
 }

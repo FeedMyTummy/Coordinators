@@ -1,20 +1,19 @@
 //
-//  ViewController.swift
+//  AuthenticationVC.swift
 //  Coordinators
 //
-//  Created by Nicolas Silva on 3/31/20.
+//  Created by Nicolas Silva on 4/2/20.
 //  Copyright © 2020 admin. All rights reserved.
 //
 
 import UIKit
 
-class ExploreVC: UIViewController {
+class AuthenticationVC: UIViewController {
     
-    weak var coordinator: ExploreCoordinator?
+    weak var coordinator: SettingsCoordinator?
     
-    static func make() -> ExploreVC {
+    static func make() -> AuthenticationVC {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
 }
-

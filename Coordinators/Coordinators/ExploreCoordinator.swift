@@ -20,6 +20,8 @@ class ExploreCoordinator: Coordinator {
     func start() {
         let exploreVC = ExploreVC.make()
         exploreVC.coordinator = self
+        exploreVC.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(exploreVC, animated: false)
     }
     
