@@ -16,4 +16,13 @@ final class Database {
     private init() { /* EMPTY */ }
     
     
+    func getRestaurants(_ completions: @escaping (Result<[Restaurant], Error>) -> Void) {
+        let restaurants = [Restaurant(name: "A"),
+                           Restaurant(name: "B"),
+                           Restaurant(name: "C"),
+                           Restaurant(name: "D"), ]
+        
+        completions(.success(restaurants))
+    }
+    
 }

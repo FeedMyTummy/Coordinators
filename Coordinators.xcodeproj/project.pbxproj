@@ -23,6 +23,7 @@
 		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
 		844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EA2436932D0058E554 /* AuthenticationVC.swift */; };
 		844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */; };
+		844A66F0243698210058E554 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EF243698210058E554 /* Restaurant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		844A66EA2436932D0058E554 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
 		844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
+		844A66EF243698210058E554 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			children = (
 				840A919F2433C55300796EE3 /* Coordinators */,
 				840A91A22433C73B00796EE3 /* Controllers */,
+				844A66EE2436980A0058E554 /* Models */,
 				840A91852433AC9900796EE3 /* AppDelegate.swift */,
 				840A91872433AC9900796EE3 /* SceneDelegate.swift */,
 				840A918B2433AC9900796EE3 /* Main.storyboard */,
@@ -111,6 +114,14 @@
 				844A66EA2436932D0058E554 /* AuthenticationVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		844A66EE2436980A0058E554 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				844A66EF243698210058E554 /* Restaurant.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 				844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,
 				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
+				844A66F0243698210058E554 /* Restaurant.swift in Sources */,
 				840A91882433AC9900796EE3 /* SceneDelegate.swift in Sources */,
 				840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */,
 				844A66E72436920E0058E554 /* SettingsVC.swift in Sources */,

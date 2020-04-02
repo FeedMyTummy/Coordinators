@@ -14,14 +14,29 @@
                     <view key="view" contentMode="scaleToFill" id="8iU-vT-CZn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xTj-cp-bqP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xTj-cp-bqP" firstAttribute="leading" secondItem="D27-CN-70K" secondAttribute="leading" id="1Qc-y1-uxt"/>
+                            <constraint firstItem="xTj-cp-bqP" firstAttribute="top" secondItem="D27-CN-70K" secondAttribute="top" id="Nat-o0-blG"/>
+                            <constraint firstItem="D27-CN-70K" firstAttribute="bottom" secondItem="xTj-cp-bqP" secondAttribute="bottom" id="O0V-e2-MLG"/>
+                            <constraint firstItem="D27-CN-70K" firstAttribute="trailing" secondItem="xTj-cp-bqP" secondAttribute="trailing" id="Oxi-Ol-0Bd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="D27-CN-70K"/>
                     </view>
                     <tabBarItem key="tabBarItem" id="hDB-Va-LcB"/>
+                    <connections>
+                        <outlet property="tableView" destination="xTj-cp-bqP" id="QS3-RM-enr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Uw-Ty-BEZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="631" y="1051"/>
+            <point key="canvasLocation" x="629.60000000000002" y="1050.224887556222"/>
         </scene>
         <!--ExploreVC-->
         <scene sceneID="rDj-qM-8sM">

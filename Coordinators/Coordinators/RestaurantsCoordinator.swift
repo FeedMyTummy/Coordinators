@@ -18,11 +18,20 @@ class RestaurantsCoordinator: Coordinator {
     }
     
     func start() {
-        let restaurantsVC = RestaurantsVC.make()
-        restaurantsVC.coordinator = self
-        restaurantsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(restaurantsVC, animated: true)
+        Database.shared.getRestaurants { [weak self] restaurants in
+            guard let self = self else { return }
+            switch restaurants {
+            case .success(let restaurants):
+                let restaurantsVC = RestaurantsVC.make(restaurants)
+                restaurantsVC.coordinator = self
+                restaurantsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+                self.navigationController.setNavigationBarHidden(true, animated: false)
+                self.navigationController.pushViewController(restaurantsVC, animated: true)
+            case .failure:
+                // TODO: What to do in case of errors?
+                break
+            }
+        }
     }
     
 }
