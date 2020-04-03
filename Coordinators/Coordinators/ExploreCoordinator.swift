@@ -19,6 +19,7 @@ class ExploreCoordinator: Coordinator, Authenticatable {
     }
     
     func start() {
+        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
         handleAuthenticationChange()
     }
     
@@ -37,22 +38,17 @@ class ExploreCoordinator: Coordinator, Authenticatable {
             destinationVC = authenticationVC
         }
         
-        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
         navigationController.setViewControllers([destinationVC], animated: false)
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.login { [weak self] result in
-            if case .success = result {
-                self?.handleAuthenticationChange()
-            }
+        parentCoordinator?.login { result in
             completion(result)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.logout { [weak self] result in
-            self?.handleAuthenticationChange()
+        parentCoordinator?.logout { result in
             completion(result)
         }
     }

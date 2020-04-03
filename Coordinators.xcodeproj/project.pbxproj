@@ -24,6 +24,7 @@
 		844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EA2436932D0058E554 /* AuthenticationVC.swift */; };
 		844A66F0243698210058E554 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EF243698210058E554 /* Restaurant.swift */; };
 		8457EB0224379AC3000324D0 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457EB0124379AC3000324D0 /* ApplicationCoordinator.swift */; };
+		8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457EB032437D59B000324D0 /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		844A66EA2436932D0058E554 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
 		844A66EF243698210058E554 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8457EB0124379AC3000324D0 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		8457EB032437D59B000324D0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				84351D672434EF72006A9438 /* MainTabBarController.swift */,
 				844A66E62436920E0058E554 /* SettingsVC.swift */,
 				844A66EA2436932D0058E554 /* AuthenticationVC.swift */,
+				8457EB032437D59B000324D0 /* ProfileVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */,
 				840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */,
 				844A66E9243692BC0058E554 /* Database.swift in Sources */,
 				844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */,

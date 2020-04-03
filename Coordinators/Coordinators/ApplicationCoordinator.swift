@@ -33,7 +33,6 @@ class ApplicationCoordinator: Coordinator {
     
     func start() {
         childCoordinators.forEach { $0.start() }
-        handleAuthenticationChange()
     }
     
     func handleAuthenticationChange() {

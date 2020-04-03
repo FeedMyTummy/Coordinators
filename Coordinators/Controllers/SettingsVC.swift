@@ -16,6 +16,10 @@ class SettingsVC: UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
+    @IBAction func profileButtonTapped(_ sender: Any) {
+        coordinator?.gotoProfile()
+    }
+    
     @IBAction func logout(_ sender: Any) {
         coordinator?.logout { result in
             switch result {

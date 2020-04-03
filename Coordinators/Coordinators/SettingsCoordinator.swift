@@ -25,40 +25,39 @@ class SettingsCoordinator: Coordinator, Authenticatable {
     }
     
     func start() {
+        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
         handleAuthenticationChange()
     }
     
     func handleAuthenticationChange() {
         navigationController.setNavigationBarHidden(true, animated: false)
         
-        let destinationVC: UIViewController
-        
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make()
             settingsVC.coordinator = self
-            destinationVC = settingsVC
+            navigationController.pushViewController(settingsVC, animated: false)
         } else {
             let authenticationVC = AuthenticationVC.make()
             authenticationVC.coordinator = self
-            destinationVC = authenticationVC
+            navigationController.setViewControllers([authenticationVC], animated: false)
         }
-        
-        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        navigationController.setViewControllers([destinationVC], animated: false)
+    }
+    
+    func gotoProfile() {
+        let profileVC = ProfileVC.make()
+        navigationController.setNavigationBarHidden(false, animated: true)
+        profileVC.coordinator = self
+        navigationController.pushViewController(profileVC, animated: true)
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.login { [weak self] result in
-            if case .success = result {
-                self?.handleAuthenticationChange()
-            }
+        parentCoordinator?.login { result in
             completion(result)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.logout { [weak self] result in
-            self?.handleAuthenticationChange()
+        parentCoordinator?.logout { result in
             completion(result)
         }
     }
