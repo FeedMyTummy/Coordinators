@@ -43,7 +43,7 @@ class SettingsCoordinator: Coordinator, Authenticatable {
             destinationVC = authenticationVC
         }
         
-        destinationVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
+        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
         navigationController.setViewControllers([destinationVC], animated: false)
     }
     

@@ -37,7 +37,7 @@ class ExploreCoordinator: Coordinator, Authenticatable {
             destinationVC = authenticationVC
         }
         
-        destinationVC.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
+        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
         navigationController.setViewControllers([destinationVC], animated: false)
     }
     
