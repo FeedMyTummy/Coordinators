@@ -10,6 +10,7 @@ import UIKit
 
 class ExploreCoordinator: Coordinator, Authenticatable {
     
+    weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -21,7 +22,7 @@ class ExploreCoordinator: Coordinator, Authenticatable {
         handleAuthenticationChange()
     }
     
-    private func handleAuthenticationChange() {
+    func handleAuthenticationChange() {
         navigationController.setNavigationBarHidden(true, animated: false)
         
         let destinationVC: UIViewController
@@ -40,16 +41,12 @@ class ExploreCoordinator: Coordinator, Authenticatable {
         navigationController.setViewControllers([destinationVC], animated: false)
     }
     
-    func login(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login()
-        handleAuthenticationChange()
-        completion(.success(()))
+    func login() {
+        parentCoordinator?.login()
     }
     
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout()
-        handleAuthenticationChange()
-        completion(.success(()))
+    func logout() {
+        parentCoordinator?.logout()
     }
     
 }

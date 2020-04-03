@@ -9,12 +9,14 @@
 import UIKit
 
 protocol Authenticatable: class {
-    func login(completion: @escaping (Result<Void, Error>) -> Void)
-    func logout(completion: @escaping (Result<Void, Error>) -> Void)
+    func handleAuthenticationChange()
+    func login()
+    func logout()
 }
 
 class SettingsCoordinator: Coordinator, Authenticatable {
     
+    weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -26,7 +28,7 @@ class SettingsCoordinator: Coordinator, Authenticatable {
         handleAuthenticationChange()
     }
     
-    private func handleAuthenticationChange() {
+    func handleAuthenticationChange() {
         navigationController.setNavigationBarHidden(true, animated: false)
         
         let destinationVC: UIViewController
@@ -45,16 +47,12 @@ class SettingsCoordinator: Coordinator, Authenticatable {
         navigationController.setViewControllers([destinationVC], animated: false)
     }
     
-    func login(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login()
-        handleAuthenticationChange()
-        completion(.success(()))
+    func login() {
+        parentCoordinator?.login()
     }
     
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout()
-        handleAuthenticationChange()
-        completion(.success(()))
+    func logout() {
+        parentCoordinator?.logout()
     }
     
 }

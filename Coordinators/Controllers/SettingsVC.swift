@@ -17,13 +17,6 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
-        coordinator?.logout { result in
-            switch result {
-            case .success():
-                break
-            case .failure:
-                break
-            }
-        }
+        coordinator?.logout()
     }
 }

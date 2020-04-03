@@ -17,13 +17,6 @@ class AuthenticationVC: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        coordinator?.login { result in
-            switch result {
-            case .success:
-                break
-            case .failure:
-                break
-            }
-        }
+        coordinator?.login()
     }
 }
