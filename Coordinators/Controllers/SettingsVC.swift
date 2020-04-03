@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    
     weak var coordinator: SettingsCoordinator?
     
     static func make() -> SettingsVC {
@@ -17,6 +17,13 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
-        coordinator?.logout()
+        coordinator?.logout { result in
+            switch result {
+            case .success:
+                print("SettingsVC Success logout")
+            case .failure(let error):
+                print("SettingsVC Failure logout \(error)")
+            }
+        }
     }
 }

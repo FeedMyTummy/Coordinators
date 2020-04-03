@@ -45,7 +45,19 @@
                     <view key="view" contentMode="scaleToFill" id="bHj-3S-lr0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOk-af-k8S">
+                                <rect key="frame" x="99" y="20" width="177" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iOk-af-k8S" firstAttribute="centerX" secondItem="bHj-3S-lr0" secondAttribute="centerX" id="FX5-5c-JRn"/>
+                            <constraint firstItem="iOk-af-k8S" firstAttribute="top" secondItem="g6z-H5-mGJ" secondAttribute="top" constant="20" id="UKk-1r-bLC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="g6z-H5-mGJ"/>
                     </view>
                     <tabBarItem key="tabBarItem" id="sQ8-qs-yLx"/>
@@ -62,16 +74,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ws-w4-8AP">
-                                <rect key="frame" x="160" y="318" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ws-w4-8AP">
+                                <rect key="frame" x="160" y="318.5" width="55" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logout:" destination="6RZ-7f-rLI" eventType="touchUpInside" id="IWW-HH-ecr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEj-Iy-zk7">
+                                <rect key="frame" x="99" y="20" width="177" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0Ws-w4-8AP" firstAttribute="centerX" secondItem="NKg-z7-mk3" secondAttribute="centerX" id="Eaz-HV-ZF8"/>
+                            <constraint firstItem="0Ws-w4-8AP" firstAttribute="centerY" secondItem="NKg-z7-mk3" secondAttribute="centerY" id="O0n-RP-14A"/>
+                            <constraint firstItem="qEj-Iy-zk7" firstAttribute="top" secondItem="jHX-xf-rDw" secondAttribute="top" constant="20" id="mJV-hy-1Wp"/>
+                            <constraint firstItem="qEj-Iy-zk7" firstAttribute="centerX" secondItem="NKg-z7-mk3" secondAttribute="centerX" id="z3a-OW-Sye"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jHX-xf-rDw"/>
                     </view>
                     <tabBarItem key="tabBarItem" id="1RE-yE-CmC"/>
@@ -88,16 +112,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8y-y4-uvD">
-                                <rect key="frame" x="168" y="318" width="38" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8y-y4-uvD">
+                                <rect key="frame" x="165" y="316.5" width="45" height="34"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="iNC-p9-Pal" eventType="touchUpInside" id="mey-eq-7Qy"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfo-OZ-Xwy">
+                                <rect key="frame" x="91.5" y="20" width="192.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="e8y-y4-uvD" firstAttribute="centerX" secondItem="iG5-6y-pQZ" secondAttribute="centerX" id="10V-7x-TXo"/>
+                            <constraint firstItem="Nfo-OZ-Xwy" firstAttribute="top" secondItem="Dfw-5n-Knv" secondAttribute="top" constant="20" id="Ork-lC-rki"/>
+                            <constraint firstItem="e8y-y4-uvD" firstAttribute="centerY" secondItem="iG5-6y-pQZ" secondAttribute="centerY" id="PDD-6m-735"/>
+                            <constraint firstItem="Nfo-OZ-Xwy" firstAttribute="centerX" secondItem="iG5-6y-pQZ" secondAttribute="centerX" id="aUK-Uc-uOZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Dfw-5n-Knv"/>
                     </view>
                 </viewController>

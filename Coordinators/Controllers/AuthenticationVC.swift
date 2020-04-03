@@ -17,6 +17,13 @@ class AuthenticationVC: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        coordinator?.login()
+        coordinator?.login { result in
+            switch result {
+            case .success:
+                print("AuthenticationVC Success login")
+            case .failure(let error):
+                print("AuthenticationVC Failure login \(error)")
+            }
+        }
     }
 }

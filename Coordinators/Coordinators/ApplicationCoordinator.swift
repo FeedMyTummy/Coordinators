@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplicationCoordinator: Coordinator, Authenticatable {
+class ApplicationCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -44,14 +44,24 @@ class ApplicationCoordinator: Coordinator, Authenticatable {
         }
     }
     
-    func login() {
-        Database.shared.login()
-        handleAuthenticationChange()
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.login { [weak self] result in
+            if case .success = result {
+                self?.handleAuthenticationChange()
+            }
+            
+            completion(result)
+        }
     }
     
-    func logout() {
-        Database.shared.logout()
-        handleAuthenticationChange()
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.logout { [weak self] result in
+            if case .success = result {
+                self?.handleAuthenticationChange()
+            }
+            
+            completion(result)
+        }
     }
     
 }
