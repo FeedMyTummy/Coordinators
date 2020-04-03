@@ -8,7 +8,12 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator {
+protocol Authenticatable {
+    func login(completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(completion: @escaping (Result<Void, Error>) -> Void)
+}
+
+class SettingsCoordinator: Coordinator, Authenticatable {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -18,20 +23,38 @@ class SettingsCoordinator: Coordinator {
     }
     
     func start() {
+        handleAuthenticationChange()
+    }
+    
+    private func handleAuthenticationChange() {
+        navigationController.setNavigationBarHidden(true, animated: false)
+        
+        let destinationVC: UIViewController
+        
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make()
             settingsVC.coordinator = self
-            settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
-            navigationController.setNavigationBarHidden(true, animated: false)
-            navigationController.pushViewController(settingsVC, animated: true)
+            destinationVC = settingsVC
         } else {
             let authenticationVC = AuthenticationVC.make()
             authenticationVC.coordinator = self
-            authenticationVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
-
-            navigationController.setNavigationBarHidden(true, animated: false)
-            navigationController.pushViewController(authenticationVC, animated: true)
+            destinationVC = authenticationVC
         }
+        
+        destinationVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+        navigationController.setViewControllers([destinationVC], animated: false)
+    }
+    
+    func login(completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.login()
+        handleAuthenticationChange()
+        completion(.success(()))
+    }
+    
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.logout()
+        handleAuthenticationChange()
+        completion(.success(()))
     }
     
 }

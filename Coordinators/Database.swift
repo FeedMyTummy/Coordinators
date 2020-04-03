@@ -9,9 +9,12 @@
 import Foundation
 
 final class Database {
+    
+    private var _isLoggedIn = false
+    
     static let shared = Database()
     
-    var isLoggedIn: Bool { false }
+    var isLoggedIn: Bool { _isLoggedIn }
     
     private init() { /* EMPTY */ }
     
@@ -23,6 +26,14 @@ final class Database {
                            Restaurant(name: "D"), ]
         
         completions(.success(restaurants))
+    }
+    
+    func login() {
+        _isLoggedIn = true
+    }
+    
+    func logout() {
+        _isLoggedIn = false
     }
     
 }

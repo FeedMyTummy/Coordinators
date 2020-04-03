@@ -16,4 +16,14 @@ class SettingsVC: UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
+    @IBAction func logout(_ sender: Any) {
+        coordinator?.logout { result in
+            switch result {
+            case .success():
+                break
+            case .failure:
+                break
+            }
+        }
+    }
 }
