@@ -22,7 +22,6 @@
 		844A66E72436920E0058E554 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E62436920E0058E554 /* SettingsVC.swift */; };
 		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
 		844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EA2436932D0058E554 /* AuthenticationVC.swift */; };
-		844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */; };
 		844A66F0243698210058E554 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EF243698210058E554 /* Restaurant.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		844A66E62436920E0058E554 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		844A66EA2436932D0058E554 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
-		844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		844A66EF243698210058E554 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +97,6 @@
 				840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */,
 				840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */,
 				844A66E42436919D0058E554 /* SettingsCoordinator.swift */,
-				844A66EC2436934D0058E554 /* AuthenticationCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -202,7 +199,6 @@
 				84351D682434EF72006A9438 /* MainTabBarController.swift in Sources */,
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
 				844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */,
-				844A66ED2436934D0058E554 /* AuthenticationCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,
 				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
 				844A66F0243698210058E554 /* Restaurant.swift in Sources */,
