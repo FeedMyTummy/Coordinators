@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Authenticatable {
+protocol Authenticatable: class {
     func login(completion: @escaping (Result<Void, Error>) -> Void)
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
 }

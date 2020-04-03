@@ -10,20 +10,35 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    let restaurants = RestaurantsCoordinator(navigationController: UINavigationController())
-    let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-    let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
+    private var coordinators = [Coordinator]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restaurants.start()
-        exploreCoordinator.start()
-        settingsCoordinator.start()
+        coordinators = [
+            RestaurantsCoordinator(navigationController: UINavigationController()),
+            ExploreCoordinator(navigationController: UINavigationController()),
+            SettingsCoordinator(navigationController: UINavigationController())
+        ]
         
-        viewControllers = [restaurants.navigationController,
-                           exploreCoordinator.navigationController,
-                           settingsCoordinator.navigationController]
+        coordinators.forEach { $0.start() }
+        
+        viewControllers = coordinators.map { $0.navigationController }
+        
+        delegate = self
     }
+    
+    
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    
+        func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+            if let index = tabBarController.viewControllers?.firstIndex(of: viewController) {
+                coordinators[index].start()
+            }
+            
+            return true
+        }
     
 }
