@@ -24,7 +24,6 @@ class ExploreCoordinator: Coordinator, Authenticatable {
     }
     
     func handleAuthenticationChange() {
-        navigationController.setNavigationBarHidden(true, animated: false)
         
         let destinationVC: UIViewController
         

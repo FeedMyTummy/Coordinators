@@ -30,7 +30,6 @@ class SettingsCoordinator: Coordinator, Authenticatable {
     }
     
     func handleAuthenticationChange() {
-        navigationController.setNavigationBarHidden(true, animated: false)
         
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make()
@@ -45,7 +44,6 @@ class SettingsCoordinator: Coordinator, Authenticatable {
     
     func gotoProfile() {
         let profileVC = ProfileVC.make()
-        navigationController.setNavigationBarHidden(false, animated: true)
         profileVC.coordinator = self
         navigationController.pushViewController(profileVC, animated: true)
     }

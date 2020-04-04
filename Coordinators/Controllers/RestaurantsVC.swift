@@ -28,6 +28,12 @@ class RestaurantsVC: UIViewController {
         tableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
 }
 
 extension RestaurantsVC: UITableViewDataSource {

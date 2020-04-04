@@ -16,7 +16,13 @@ class AuthenticationVC: UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
-    @IBAction func login(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction private func login(_ sender: Any) {
         coordinator?.login { result in
             switch result {
             case .success:

@@ -16,11 +16,17 @@ class SettingsVC: UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
     }
     
-    @IBAction func profileButtonTapped(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction private func profileButtonTapped(_ sender: Any) {
         coordinator?.gotoProfile()
     }
     
-    @IBAction func logout(_ sender: Any) {
+    @IBAction private func logout(_ sender: Any) {
         coordinator?.logout { result in
             switch result {
             case .success:

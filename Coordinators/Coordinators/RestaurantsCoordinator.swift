@@ -25,7 +25,6 @@ class RestaurantsCoordinator: Coordinator {
                 let restaurantsVC = RestaurantsVC.make(restaurants)
                 restaurantsVC.coordinator = self
                 restaurantsVC.tabBarItem = UITabBarItem(title: "Restaurants", image: UIImage(systemName: "list.dash"), tag: 0)
-                self.navigationController.setNavigationBarHidden(true, animated: false)
                 self.navigationController.pushViewController(restaurantsVC, animated: true)
             case .failure:
                 // TODO: What to do in case of errors?
