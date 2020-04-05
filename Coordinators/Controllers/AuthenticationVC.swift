@@ -10,19 +10,28 @@ import UIKit
 
 class AuthenticationVC: UIViewController {
     
-    weak var coordinator: SettingsCoordinator?
+    private unowned var coordinator: AuthenticationCoordinator!
     
-    static func make() -> AuthenticationVC {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
+    static func make(coordinator: AuthenticationCoordinator) -> AuthenticationVC {
+        let authenticationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self)) as! AuthenticationVC
+        authenticationVC.coordinator = coordinator
+        
+        return authenticationVC
     }
     
-    @IBAction func login(_ sender: Any) {
-        coordinator?.login { result in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction private func login(_ sender: Any) {
+        coordinator.login { result in
             switch result {
             case .success:
-                break
-            case .failure:
-                break
+                print("AuthenticationVC Success login")
+            case .failure(let error):
+                print("AuthenticationVC Failure login \(error)")
             }
         }
     }

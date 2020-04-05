@@ -10,6 +10,7 @@ import UIKit
 
 class ExploreCoordinator: Coordinator {
     
+    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -18,11 +19,25 @@ class ExploreCoordinator: Coordinator {
     }
     
     func start() {
-        let exploreVC = ExploreVC.make()
-        exploreVC.coordinator = self
-        exploreVC.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(exploreVC, animated: false)
+        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
+        authenticationDidChange()
+    }
+    
+}
+
+extension ExploreCoordinator: AuthenticationDelegate {
+    
+    func authenticationDidChange() {
+        childCoordinators = []
+        if Database.shared.isLoggedIn {
+            let exploreVC = ExploreVC.make(coordinator: self)
+            navigationController.setViewControllers([exploreVC], animated: false)
+        } else {
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+            childCoordinators.append(authenticationCoordinator)
+            authenticationCoordinator.start()
+        }
     }
     
 }

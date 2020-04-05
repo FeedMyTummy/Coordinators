@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol Authenticatable {
-    func login(completion: @escaping (Result<Void, Error>) -> Void)
-    func logout(completion: @escaping (Result<Void, Error>) -> Void)
-}
-
-class SettingsCoordinator: Coordinator, Authenticatable {
+class SettingsCoordinator: Coordinator {
     
+    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -23,38 +19,48 @@ class SettingsCoordinator: Coordinator, Authenticatable {
     }
     
     func start() {
-        handleAuthenticationChange()
+        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
+        authenticationDidChange()
     }
     
-    private func handleAuthenticationChange() {
-        navigationController.setNavigationBarHidden(true, animated: false)
-        
-        let destinationVC: UIViewController
-        
-        if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make()
-            settingsVC.coordinator = self
-            destinationVC = settingsVC
-        } else {
-            let authenticationVC = AuthenticationVC.make()
-            authenticationVC.coordinator = self
-            destinationVC = authenticationVC
+    func gotoProfile() {
+        let profileVC = ProfileVC.make(coordinator: self)
+        navigationController.pushViewController(profileVC, animated: true)
+    }
+    
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.login { [weak self] in
+            if case .success = $0 {
+                self?.authenticationDelegate?.authenticationDidChange()
+            }
+            completion($0)
         }
-        
-        destinationVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
-        navigationController.setViewControllers([destinationVC], animated: false)
     }
     
-    func login(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login()
-        handleAuthenticationChange()
-        completion(.success(()))
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        Database.shared.logout { [weak self] in
+            if case .success = $0 {
+                self?.authenticationDelegate?.authenticationDidChange()
+            }
+            completion($0)
+        }
     }
     
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout()
-        handleAuthenticationChange()
-        completion(.success(()))
+}
+
+extension SettingsCoordinator: AuthenticationDelegate {
+    
+    func authenticationDidChange() {
+        childCoordinators = []
+        if Database.shared.isLoggedIn {
+            let settingsVC = SettingsVC.make(coordinator: self)
+            navigationController.pushViewController(settingsVC, animated: false)
+        } else {
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            childCoordinators.append(authenticationCoordinator)
+            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+            authenticationCoordinator.start()
+        }
     }
     
 }

@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum DataBaseError: Error {
+    case authentication
+    case unknown
+}
+
 final class Database {
     
     private var _isLoggedIn = false
@@ -19,21 +24,35 @@ final class Database {
     private init() { /* EMPTY */ }
     
     
-    func getRestaurants(_ completions: @escaping (Result<[Restaurant], Error>) -> Void) {
-        let restaurants = [Restaurant(name: "A"),
-                           Restaurant(name: "B"),
-                           Restaurant(name: "C"),
-                           Restaurant(name: "D"), ]
+    func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void) {
+        let restaurants = [
+            Restaurant(name: "A"),
+            Restaurant(name: "B"),
+            Restaurant(name: "C"),
+            Restaurant(name: "D")
+        ]
         
-        completions(.success(restaurants))
+        completion(.success(restaurants))
     }
     
-    func login() {
-        _isLoggedIn = true
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        if simulateSuccess() {
+            _isLoggedIn = true
+            completion(.success(()))
+        } else {
+            completion(.failure(DataBaseError.authentication))
+        }
     }
     
-    func logout() {
-        _isLoggedIn = false
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        if simulateSuccess() {
+            _isLoggedIn = false
+            completion(.success(()))
+        } else {
+            completion(.failure(DataBaseError.unknown))
+        }
     }
+    
+    func simulateSuccess() -> Bool { Int.random(in: 0...1).isMultiple(of: 2) }
     
 }

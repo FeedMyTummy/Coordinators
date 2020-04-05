@@ -9,20 +9,33 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
-    weak var coordinator: SettingsCoordinator?
     
-    static func make() -> SettingsVC {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
+    private unowned var coordinator: SettingsCoordinator!
+    
+    static func make(coordinator: SettingsCoordinator) -> SettingsVC {
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self)) as! SettingsVC
+        settingsVC.coordinator = coordinator
+        
+        return settingsVC
     }
     
-    @IBAction func logout(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction private func profileButtonTapped(_ sender: Any) {
+        coordinator?.gotoProfile()
+    }
+    
+    @IBAction private func logout(_ sender: Any) {
         coordinator?.logout { result in
             switch result {
-            case .success():
-                break
-            case .failure:
-                break
+            case .success:
+                print("SettingsVC Success logout")
+            case .failure(let error):
+                print("SettingsVC Failure logout \(error)")
             }
         }
     }
