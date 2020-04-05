@@ -11,7 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let applicationCoordinator = ApplicationCoordinator()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = MainTabBarController()
+        
+        applicationCoordinator.start()
+        window?.rootViewController = applicationCoordinator.rootViewController
         window?.makeKeyAndVisible()
     }
 

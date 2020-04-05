@@ -27,7 +27,7 @@ class RestaurantsCoordinator: Coordinator {
                 restaurantsVC.tabBarItem = UITabBarItem(title: "Restaurants", image: UIImage(systemName: "list.dash"), tag: 0)
                 self.navigationController.pushViewController(restaurantsVC, animated: true)
             case .failure:
-                // TODO: What to do in case of errors?
+                // TODO:
                 break
             }
         }

@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ApplicationCoordinator: Coordinator {
+class ApplicationCoordinator: NSObject {
     
     var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
+    let tabController: UITabBarController
+    var rootViewController: UIViewController { tabController }
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override init() {
+        tabController = UITabBarController()
+        
+        super.init()
         
         let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
         
@@ -29,6 +32,9 @@ class ApplicationCoordinator: Coordinator {
             exploreCoordinator,
             settingsCoordinator
         ]
+        
+        tabController.viewControllers = childCoordinators.map { $0.navigationController }
+        tabController.delegate = self
     }
     
     func start() {
@@ -60,5 +66,9 @@ class ApplicationCoordinator: Coordinator {
             completion(result)
         }
     }
+    
+}
+
+extension ApplicationCoordinator: UITabBarControllerDelegate {
     
 }

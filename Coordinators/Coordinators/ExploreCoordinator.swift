@@ -28,7 +28,7 @@ class ExploreCoordinator: Coordinator {
 extension ExploreCoordinator: AuthenticationDelegate {
     
     func authenticationDidChange() {
-        childCoordinators.removeAll()
+        childCoordinators = []
         if Database.shared.isLoggedIn {
             let exploreVC = ExploreVC.make()
             exploreVC.coordinator = self
