@@ -22,8 +22,7 @@ class RestaurantsCoordinator: Coordinator {
             guard let self = self else { return }
             switch restaurants {
             case .success(let restaurants):
-                let restaurantsVC = RestaurantsVC.make(restaurants)
-                restaurantsVC.coordinator = self
+                let restaurantsVC = RestaurantsVC.make(restaurants, coordinator: self)
                 restaurantsVC.tabBarItem = UITabBarItem(title: "Restaurants", image: UIImage(systemName: "list.dash"), tag: 0)
                 self.navigationController.pushViewController(restaurantsVC, animated: true)
             case .failure:

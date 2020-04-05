@@ -97,8 +97,8 @@
 		840A919F2433C55300796EE3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				8457EB0124379AC3000324D0 /* ApplicationController.swift */,
 				840A91992433ACBA00796EE3 /* Coordinator.swift */,
+				8457EB0124379AC3000324D0 /* ApplicationController.swift */,
 				840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */,
 				840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */,
 				844A66E42436919D0058E554 /* SettingsCoordinator.swift */,

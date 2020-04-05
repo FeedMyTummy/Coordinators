@@ -23,8 +23,7 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func start() {
-        let authenticationVC = AuthenticationVC.make()
-        authenticationVC.coordinator = self
+        let authenticationVC = AuthenticationVC.make(coordinator: self)
         navigationController.pushViewController(authenticationVC, animated: false)
     }
     

@@ -10,14 +10,15 @@ import UIKit
 
 class RestaurantsVC: UIViewController {
     
-    weak var coordinator: RestaurantsCoordinator?
+    private unowned var coordinator: RestaurantsCoordinator!
     private var restaurants = [Restaurant]()
     
     @IBOutlet private weak var tableView: UITableView!
     
-    static func make(_ restaurants: [Restaurant]) -> RestaurantsVC {
+    static func make(_ restaurants: [Restaurant], coordinator: RestaurantsCoordinator) -> RestaurantsVC {
         let restaurantsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self)) as! RestaurantsVC
         restaurantsVC.restaurants = restaurants
+        restaurantsVC.coordinator = coordinator
         
         return restaurantsVC
     }

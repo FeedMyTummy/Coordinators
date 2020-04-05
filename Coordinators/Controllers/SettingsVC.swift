@@ -10,10 +10,13 @@ import UIKit
 
 class SettingsVC: UIViewController {
     
-    weak var coordinator: SettingsCoordinator?
+    private unowned var coordinator: SettingsCoordinator!
     
-    static func make() -> SettingsVC {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
+    static func make(coordinator: SettingsCoordinator) -> SettingsVC {
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self)) as! SettingsVC
+        settingsVC.coordinator = coordinator
+        
+        return settingsVC
     }
     
     override func viewWillAppear(_ animated: Bool) {

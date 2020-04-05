@@ -30,8 +30,7 @@ extension ExploreCoordinator: AuthenticationDelegate {
     func authenticationDidChange() {
         childCoordinators = []
         if Database.shared.isLoggedIn {
-            let exploreVC = ExploreVC.make()
-            exploreVC.coordinator = self
+            let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)

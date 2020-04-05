@@ -24,8 +24,7 @@ class SettingsCoordinator: Coordinator {
     }
     
     func gotoProfile() {
-        let profileVC = ProfileVC.make()
-        profileVC.coordinator = self
+        let profileVC = ProfileVC.make(coordinator: self)
         navigationController.pushViewController(profileVC, animated: true)
     }
     
@@ -54,8 +53,7 @@ extension SettingsCoordinator: AuthenticationDelegate {
     func authenticationDidChange() {
         childCoordinators = []
         if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make()
-            settingsVC.coordinator = self
+            let settingsVC = SettingsVC.make(coordinator: self)
             navigationController.pushViewController(settingsVC, animated: false)
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)

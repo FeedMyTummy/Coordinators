@@ -10,10 +10,13 @@ import UIKit
 
 class ExploreVC: UIViewController {
     
-    weak var coordinator: ExploreCoordinator?
+    private unowned var coordinator: ExploreCoordinator!
     
-    static func make() -> ExploreVC {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))
+    static func make(coordinator: ExploreCoordinator) -> ExploreVC {
+        let exploreVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self)) as! ExploreVC
+        exploreVC.coordinator = coordinator
+        
+        return exploreVC
     }
     
     override func viewWillAppear(_ animated: Bool) {
