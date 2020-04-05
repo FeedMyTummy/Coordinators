@@ -19,5 +19,4 @@ class MainTabBarController: UITabBarController {
         viewControllers = coordinator.childCoordinators.map { $0.navigationController }
     }
     
-    
 }
