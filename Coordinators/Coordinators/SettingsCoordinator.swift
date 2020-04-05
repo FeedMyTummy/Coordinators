@@ -52,6 +52,8 @@ extension SettingsCoordinator: AuthenticationDelegate {
     
     func authenticationDidChange() {
         childCoordinators = []
+        navigationController.viewControllers = []
+        
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make(coordinator: self)
             navigationController.pushViewController(settingsVC, animated: false)
