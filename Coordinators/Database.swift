@@ -53,9 +53,6 @@ final class Database {
         }
     }
     
-    func simulateSuccess() -> Bool {
-//        Int.random(in: 0...1).isMultiple(of: 2)
-        true
-    }
+    func simulateSuccess() -> Bool { Int.random(in: 0...1).isMultiple(of: 2) }
     
 }
