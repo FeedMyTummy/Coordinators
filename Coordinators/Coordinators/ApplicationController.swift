@@ -22,10 +22,10 @@ class ApplicationController: NSObject {
         let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
         
         let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-        exploreCoordinator.applicationController = self
+        exploreCoordinator.authenticationDelegate = self
         
         let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
-        settingsCoordinator.applicationController = self
+        settingsCoordinator.authenticationDelegate = self
                 
         childCoordinators = [
             restaurantsCoordinator,

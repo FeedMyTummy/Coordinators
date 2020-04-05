@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsCoordinator: Coordinator {
     
-    weak var applicationController: ApplicationController?
+    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -32,7 +32,7 @@ class SettingsCoordinator: Coordinator {
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
         Database.shared.login { [weak self] in
             if case .success = $0 {
-                self?.applicationController?.authenticationDidChange()
+                self?.authenticationDelegate?.authenticationDidChange()
             }
             completion($0)
         }
@@ -41,7 +41,7 @@ class SettingsCoordinator: Coordinator {
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         Database.shared.logout { [weak self] in
             if case .success = $0 {
-                self?.applicationController?.authenticationDidChange()
+                self?.authenticationDelegate?.authenticationDidChange()
             }
             completion($0)
         }
@@ -60,7 +60,7 @@ extension SettingsCoordinator: AuthenticationDelegate {
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
             childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.authenticationDelegate = applicationController
+            authenticationCoordinator.authenticationDelegate = authenticationDelegate
             authenticationCoordinator.start()
         }
     }

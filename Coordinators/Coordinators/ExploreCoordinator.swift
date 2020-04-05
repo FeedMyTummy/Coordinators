@@ -10,7 +10,7 @@ import UIKit
 
 class ExploreCoordinator: Coordinator {
     
-    weak var applicationController: ApplicationController?
+    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -35,7 +35,7 @@ extension ExploreCoordinator: AuthenticationDelegate {
             navigationController.setViewControllers([exploreVC], animated: false)
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            authenticationCoordinator.authenticationDelegate = applicationController
+            authenticationCoordinator.authenticationDelegate = authenticationDelegate
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }
