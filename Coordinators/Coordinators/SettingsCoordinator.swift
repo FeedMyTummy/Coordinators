@@ -46,6 +46,7 @@ class SettingsCoordinator: Coordinator {
 extension SettingsCoordinator: AuthenticationDelegate {
     
     func authenticationDidChange() {
+        childCoordinators.removeAll()
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make()
             settingsVC.coordinator = self

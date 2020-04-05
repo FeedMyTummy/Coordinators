@@ -29,6 +29,7 @@ class LoginCoordinator: Coordinator, AuthenticationDelegate {
     }
     
     func authenticationDidChange() {
+        childCoordinators.removeAll()
         navigationController.popViewController(animated: true)
     }
     
