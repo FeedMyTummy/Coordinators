@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator, AuthenticationDelegate {
+class SettingsCoordinator: Coordinator {
     
     weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
@@ -21,19 +21,6 @@ class SettingsCoordinator: Coordinator, AuthenticationDelegate {
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
         authenticationDidChange()
-    }
-    
-    func authenticationDidChange() {
-        if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make()
-            settingsVC.coordinator = self
-            navigationController.pushViewController(settingsVC, animated: false)
-        } else {
-            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-            childCoordinators.append(loginCoordinator)
-            loginCoordinator.authenticationDelegate = self
-            loginCoordinator.start()
-        }
     }
     
     func gotoProfile() {
@@ -51,6 +38,23 @@ class SettingsCoordinator: Coordinator, AuthenticationDelegate {
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         parentCoordinator?.logout { result in
             completion(result)
+        }
+    }
+    
+}
+
+extension SettingsCoordinator: AuthenticationDelegate {
+    
+    func authenticationDidChange() {
+        if Database.shared.isLoggedIn {
+            let settingsVC = SettingsVC.make()
+            settingsVC.coordinator = self
+            navigationController.pushViewController(settingsVC, animated: false)
+        } else {
+            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+            childCoordinators.append(loginCoordinator)
+            loginCoordinator.authenticationDelegate = self
+            loginCoordinator.start()
         }
     }
     

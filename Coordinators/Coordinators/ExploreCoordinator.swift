@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator, AuthenticationDelegate {
+class ExploreCoordinator: Coordinator {
     
     weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
@@ -23,7 +23,11 @@ class ExploreCoordinator: Coordinator, AuthenticationDelegate {
         authenticationDidChange()
     }
     
-    func authenticationDidChange() {  
+}
+
+extension ExploreCoordinator: AuthenticationDelegate {
+    
+    func authenticationDidChange() {
         if Database.shared.isLoggedIn {
             let exploreVC = ExploreVC.make()
             exploreVC.coordinator = self

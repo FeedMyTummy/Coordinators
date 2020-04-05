@@ -48,7 +48,6 @@ class ApplicationCoordinator: Coordinator {
             if case .success = result {
                 self?.handleAuthenticationChange()
             }
-            
             completion(result)
         }
     }
@@ -58,7 +57,6 @@ class ApplicationCoordinator: Coordinator {
             if case .success = result {
                 self?.handleAuthenticationChange()
             }
-            
             completion(result)
         }
     }
