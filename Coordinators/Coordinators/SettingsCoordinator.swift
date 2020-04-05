@@ -30,11 +30,21 @@ class SettingsCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        applicationController?.login { completion($0) }
+        Database.shared.login { [weak self] in
+            if case .success = $0 {
+                self?.applicationController?.authenticationDidChange()
+            }
+            completion($0)
+        }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        applicationController?.logout { completion($0) }
+        Database.shared.logout { [weak self] in
+            if case .success = $0 {
+                self?.applicationController?.authenticationDidChange()
+            }
+            completion($0)
+        }
     }
     
 }

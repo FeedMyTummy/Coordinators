@@ -41,24 +41,6 @@ class ApplicationController: NSObject {
         childCoordinators.forEach { $0.start() }
     }
     
-    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-//        Database.shared.login { [weak self] result in
-//            if case .success = result {
-//                self?.handleAuthenticationChange()
-//            }
-//            completion(result)
-//        }
-    }
-    
-    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-//        Database.shared.logout { [weak self] result in
-//            if case .success = result {
-//                self?.handleAuthenticationChange()
-//            }
-//            completion(result)
-//        }
-    }
-    
 }
 
 extension ApplicationController: AuthenticationDelegate {

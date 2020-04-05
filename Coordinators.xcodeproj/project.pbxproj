@@ -110,8 +110,8 @@
 		840A91A22433C73B00796EE3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				840A91892433AC9900796EE3 /* ExploreVC.swift */,
 				840A919D2433B21400796EE3 /* RestaurantsVC.swift */,
+				840A91892433AC9900796EE3 /* ExploreVC.swift */,
 				844A66E62436920E0058E554 /* SettingsVC.swift */,
 				844A66EA2436932D0058E554 /* AuthenticationVC.swift */,
 				8457EB032437D59B000324D0 /* ProfileVC.swift */,
