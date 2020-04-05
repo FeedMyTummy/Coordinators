@@ -37,8 +37,8 @@ class ApplicationCoordinator: Coordinator {
     
     func handleAuthenticationChange() {
         childCoordinators.forEach {
-            if let coordinator = $0 as? Authenticatable {
-                coordinator.handleAuthenticationChange()
+            if let coordinator = $0 as? AuthenticationDelegate {
+                coordinator.authenticationDidChange()
             }
         }
     }

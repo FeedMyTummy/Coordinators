@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator, Authenticatable {
+class ExploreCoordinator: Coordinator, AuthenticationDelegate {
     
     weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
@@ -20,35 +20,18 @@ class ExploreCoordinator: Coordinator, Authenticatable {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        handleAuthenticationChange()
+        authenticationDidChange()
     }
     
-    func handleAuthenticationChange() {
-        
-        let destinationVC: UIViewController
-        
+    func authenticationDidChange() {  
         if Database.shared.isLoggedIn {
             let exploreVC = ExploreVC.make()
             exploreVC.coordinator = self
-            destinationVC = exploreVC
+            navigationController.setViewControllers([exploreVC], animated: false)
         } else {
-            let authenticationVC = AuthenticationVC.make()
-            authenticationVC.coordinator = self
-            destinationVC = authenticationVC
-        }
-        
-        navigationController.setViewControllers([destinationVC], animated: false)
-    }
-    
-    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.login { result in
-            completion(result)
-        }
-    }
-    
-    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.logout { result in
-            completion(result)
+            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+            childCoordinators.append(loginCoordinator)
+            loginCoordinator.start()
         }
     }
     

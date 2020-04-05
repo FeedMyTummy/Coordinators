@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol Authenticatable: class {
-    func handleAuthenticationChange()
-    func login(_ completion: @escaping (Result<Void, Error>) -> Void)
-    func logout(_ completion: @escaping (Result<Void, Error>) -> Void)
-}
-
-class SettingsCoordinator: Coordinator, Authenticatable {
+class SettingsCoordinator: Coordinator, AuthenticationDelegate {
     
     weak var parentCoordinator: ApplicationCoordinator?
     var childCoordinators = [Coordinator]()
@@ -26,19 +20,19 @@ class SettingsCoordinator: Coordinator, Authenticatable {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        handleAuthenticationChange()
+        authenticationDidChange()
     }
     
-    func handleAuthenticationChange() {
-        
+    func authenticationDidChange() {
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make()
             settingsVC.coordinator = self
             navigationController.pushViewController(settingsVC, animated: false)
         } else {
-            let authenticationVC = AuthenticationVC.make()
-            authenticationVC.coordinator = self
-            navigationController.setViewControllers([authenticationVC], animated: false)
+            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+            childCoordinators.append(loginCoordinator)
+            loginCoordinator.authenticationDelegate = self
+            loginCoordinator.start()
         }
     }
     
