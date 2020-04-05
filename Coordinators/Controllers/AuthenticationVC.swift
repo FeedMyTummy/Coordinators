@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthenticationVC: UIViewController {
+class AuthenticationVC: DebugVC {
     
     private unowned var coordinator: AuthenticationCoordinator!
     

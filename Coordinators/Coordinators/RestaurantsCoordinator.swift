@@ -10,26 +10,30 @@ import UIKit
 
 class RestaurantsCoordinator: Coordinator {
     
+    var router: Router
     var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(router: Router) {
+        self.router = router
+        print("RestaurantsCoordinator: init")
     }
     
-    func start() {
+    func present(animated: Bool, onDismissed: (() -> Void)?) {
         Database.shared.getRestaurants { [weak self] restaurants in
             guard let self = self else { return }
             switch restaurants {
             case .success(let restaurants):
                 let restaurantsVC = RestaurantsVC.make(restaurants, coordinator: self)
-                restaurantsVC.tabBarItem = UITabBarItem(title: "Restaurants", image: UIImage(systemName: "list.dash"), tag: 0)
-                self.navigationController.pushViewController(restaurantsVC, animated: true)
+                self.router.present(restaurantsVC, animated: animated)
             case .failure:
                 // TODO:
                 break
             }
         }
+    }
+    
+    deinit {
+        print("RestaurantsCoordinator: deinit")
     }
     
 }

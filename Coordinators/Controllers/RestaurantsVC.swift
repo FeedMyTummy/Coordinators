@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestaurantsVC: UIViewController {
+class RestaurantsVC: DebugVC {
     
     private unowned var coordinator: RestaurantsCoordinator!
     private var restaurants = [Restaurant]()

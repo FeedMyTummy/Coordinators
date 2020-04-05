@@ -10,35 +10,29 @@ import UIKit
 
 class ExploreCoordinator: Coordinator {
     
+    var router: Router
     weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(router: Router) {
+        self.router = router
+        print("ExploreCoordinator: init")
     }
     
-    func start() {
-        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange()
-    }
-    
-}
-
-extension ExploreCoordinator: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
+    func present(animated: Bool, onDismissed: (() -> Void)?) {
         childCoordinators = []
-        navigationController.viewControllers = []
         if Database.shared.isLoggedIn {
             let exploreVC = ExploreVC.make(coordinator: self)
-            navigationController.setViewControllers([exploreVC], animated: false)
+            router.present(exploreVC, animated: animated)
         } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            let authenticationCoordinator = AuthenticationCoordinator(router: router)
             authenticationCoordinator.authenticationDelegate = authenticationDelegate
-            childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.start()
+            presentChild(authenticationCoordinator, animated: animated)
         }
+    }
+    
+    deinit {
+        print("ExploreCoordinator: deinit")
     }
     
 }

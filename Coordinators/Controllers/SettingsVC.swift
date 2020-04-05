@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class SettingsVC: DebugVC {
     
     private unowned var coordinator: SettingsCoordinator!
     
@@ -17,6 +17,10 @@ class SettingsVC: UIViewController {
         settingsVC.coordinator = coordinator
         
         return settingsVC
+    }
+    
+    deinit {
+        print("SettingsVC: deinit")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,3 +44,18 @@ class SettingsVC: UIViewController {
         }
     }
 }
+
+class DebugVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("\(String(describing: self)) viewDidLoad")
+    }
+    
+    deinit {
+        print("\(String(describing: self)) deinit")
+    }
+    
+}
+
+

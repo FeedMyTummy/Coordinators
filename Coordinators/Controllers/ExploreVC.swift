@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExploreVC: UIViewController {
+class ExploreVC: DebugVC {
     
     private unowned var coordinator: ExploreCoordinator!
     

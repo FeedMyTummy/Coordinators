@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: DebugVC {
     
     private unowned var coordinator: SettingsCoordinator!
     

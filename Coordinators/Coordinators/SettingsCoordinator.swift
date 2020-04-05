@@ -10,22 +10,35 @@ import UIKit
 
 class SettingsCoordinator: Coordinator {
     
+    var router: Router
     weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(router: Router) {
+        self.router = router
+        print("SettingsCoordinator: init")
     }
     
-    func start() {
-        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        authenticationDidChange()
+    func present(animated: Bool, onDismissed: (() -> Void)?) {
+        childCoordinators = []
+        
+        if Database.shared.isLoggedIn {
+            let settingsVC = SettingsVC.make(coordinator: self)
+            router.present(settingsVC, animated: false)
+        } else {
+            let authenticationCoordinator = AuthenticationCoordinator(router: router)
+            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+            presentChild(authenticationCoordinator, animated: animated)
+        }
+    }
+    
+    deinit {
+        print("SettingsCoordinator: deinit")
     }
     
     func gotoProfile() {
         let profileVC = ProfileVC.make(coordinator: self)
-        navigationController.pushViewController(profileVC, animated: true)
+        router.present(profileVC, animated: true)
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
@@ -43,25 +56,6 @@ class SettingsCoordinator: Coordinator {
                 self?.authenticationDelegate?.authenticationDidChange()
             }
             completion($0)
-        }
-    }
-    
-}
-
-extension SettingsCoordinator: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
-        childCoordinators = []
-        navigationController.viewControllers = []
-        
-        if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make(coordinator: self)
-            navigationController.pushViewController(settingsVC, animated: false)
-        } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
-            authenticationCoordinator.start()
         }
     }
     

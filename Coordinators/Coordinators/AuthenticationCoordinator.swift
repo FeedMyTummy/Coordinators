@@ -14,17 +14,22 @@ protocol AuthenticationDelegate: class {
 
 class AuthenticationCoordinator: Coordinator {
     
+    var router: Router
     weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    func present(animated: Bool, onDismissed: (() -> Void)?) {
+        let authenticationVC = AuthenticationVC.make(coordinator: self)
+        router.present(authenticationVC, animated: false)
     }
     
-    func start() {
-        let authenticationVC = AuthenticationVC.make(coordinator: self)
-        navigationController.pushViewController(authenticationVC, animated: false)
+    init(router: Router) {
+        self.router = router
+        print("AuthenticationCoordinator: init")
+    }
+    
+    deinit {
+        print("AuthenticationCoordinator: deinit")
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {

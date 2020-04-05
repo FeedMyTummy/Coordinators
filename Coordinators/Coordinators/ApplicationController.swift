@@ -19,26 +19,48 @@ class ApplicationController: NSObject {
         
         super.init()
         
-        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
+        let restaurantsNavigationController = UINavigationController()
+        restaurantsNavigationController.tabBarItem = UITabBarItem(title: "Restaurants", image: UIImage(systemName: "list.dash"), tag: 0)
         
-        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
+        let exploreNavigationController = UINavigationController()
+        exploreNavigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 1)
+        
+        let settingsNavigationController = UINavigationController()
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
+        
+        let restaurantsCoordinator = RestaurantsCoordinator(router: NavigationRouter(navigationController: restaurantsNavigationController))
+        
+        let exploreCoordinator = ExploreCoordinator(router: NavigationRouter(navigationController: exploreNavigationController))
         exploreCoordinator.authenticationDelegate = self
         
-        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
+        let settingsCoordinator = SettingsCoordinator(router: NavigationRouter(navigationController: settingsNavigationController))
         settingsCoordinator.authenticationDelegate = self
                 
+        
         childCoordinators = [
             restaurantsCoordinator,
             exploreCoordinator,
             settingsCoordinator
         ]
         
-        tabController.viewControllers = childCoordinators.map { $0.navigationController }
+        
+        tabController.viewControllers = [
+            restaurantsNavigationController,
+            exploreNavigationController,
+            settingsNavigationController
+        ]
+        
+        
         tabController.delegate = self
+        print("ApplicationController: init")
+    }
+    
+    deinit {
+        print("ApplicationController: deinit")
     }
     
     func start() {
-        childCoordinators.forEach { $0.start() }
+        childCoordinators.forEach { $0.present(animated: false, onDismissed: nil) }
     }
     
 }
