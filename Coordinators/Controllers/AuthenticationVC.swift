@@ -10,7 +10,7 @@ import UIKit
 
 class AuthenticationVC: UIViewController {
     
-    weak var coordinator: LoginCoordinator?
+    weak var coordinator: AuthenticationCoordinator?
     
     static func make() -> AuthenticationVC {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: String(describing: self))

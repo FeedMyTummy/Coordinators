@@ -1,5 +1,5 @@
 //
-//  LoginCoordinator.swift
+//  AuthenticationCoordinator.swift
 //  Coordinators
 //
 //  Created by Nicolas Silva on 4/4/20.
@@ -14,7 +14,7 @@ protocol AuthenticationDelegate: class {
 
 class AuthenticationCoordinator: Coordinator {
     
-    weak var authenticationDelegate: SettingsCoordinator?
+    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -29,14 +29,20 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        authenticationDelegate?.login {
-            completion($0)
+        Database.shared.login { [weak self] result in
+            if case .success = result {
+                self?.authenticationDelegate?.authenticationDidChange()
+            }
+            completion(result)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        authenticationDelegate?.logout {
-            completion($0)
+        Database.shared.logout { [weak self] result in
+            if case .success = result {
+                self?.authenticationDelegate?.authenticationDidChange()
+            }
+            completion(result)
         }
     }
     

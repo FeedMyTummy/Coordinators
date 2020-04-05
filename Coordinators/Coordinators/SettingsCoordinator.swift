@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsCoordinator: Coordinator {
     
-    weak var parentCoordinator: ApplicationCoordinator?
+    weak var applicationController: ApplicationController?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -30,15 +30,11 @@ class SettingsCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.login { result in
-            completion(result)
-        }
+        applicationController?.login { completion($0) }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        parentCoordinator?.logout { result in
-            completion(result)
-        }
+        applicationController?.logout { completion($0) }
     }
     
 }
@@ -52,10 +48,10 @@ extension SettingsCoordinator: AuthenticationDelegate {
             settingsVC.coordinator = self
             navigationController.pushViewController(settingsVC, animated: false)
         } else {
-            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-            childCoordinators.append(loginCoordinator)
-            loginCoordinator.authenticationDelegate = self
-            loginCoordinator.start()
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            childCoordinators.append(authenticationCoordinator)
+            authenticationCoordinator.authenticationDelegate = applicationController
+            authenticationCoordinator.start()
         }
     }
     

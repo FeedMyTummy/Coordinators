@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplicationCoordinator: NSObject {
+class ApplicationController: NSObject {
     
     var childCoordinators = [Coordinator]()
     let tabController: UITabBarController
@@ -22,10 +22,10 @@ class ApplicationCoordinator: NSObject {
         let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
         
         let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-        exploreCoordinator.parentCoordinator = self
+        exploreCoordinator.applicationController = self
         
         let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
-        settingsCoordinator.parentCoordinator = self
+        settingsCoordinator.applicationController = self
                 
         childCoordinators = [
             restaurantsCoordinator,
@@ -41,7 +41,29 @@ class ApplicationCoordinator: NSObject {
         childCoordinators.forEach { $0.start() }
     }
     
-    func handleAuthenticationChange() {
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+//        Database.shared.login { [weak self] result in
+//            if case .success = result {
+//                self?.handleAuthenticationChange()
+//            }
+//            completion(result)
+//        }
+    }
+    
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+//        Database.shared.logout { [weak self] result in
+//            if case .success = result {
+//                self?.handleAuthenticationChange()
+//            }
+//            completion(result)
+//        }
+    }
+    
+}
+
+extension ApplicationController: AuthenticationDelegate {
+    
+    func authenticationDidChange() {
         childCoordinators.forEach {
             if let coordinator = $0 as? AuthenticationDelegate {
                 coordinator.authenticationDidChange()
@@ -49,26 +71,8 @@ class ApplicationCoordinator: NSObject {
         }
     }
     
-    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login { [weak self] result in
-            if case .success = result {
-                self?.handleAuthenticationChange()
-            }
-            completion(result)
-        }
-    }
-    
-    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout { [weak self] result in
-            if case .success = result {
-                self?.handleAuthenticationChange()
-            }
-            completion(result)
-        }
-    }
-    
 }
 
-extension ApplicationCoordinator: UITabBarControllerDelegate {
+extension ApplicationController: UITabBarControllerDelegate {
     
 }
