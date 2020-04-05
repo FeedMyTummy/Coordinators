@@ -19,26 +19,9 @@ class ApplicationController: NSObject {
         
         super.init()
         
-        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
         
-        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-        exploreCoordinator.authenticationDelegate = self
-        
-        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
-        settingsCoordinator.authenticationDelegate = self
-                
-        childCoordinators = [
-            restaurantsCoordinator,
-            exploreCoordinator,
-            settingsCoordinator
-        ]
-        
-        tabController.viewControllers = childCoordinators.map { $0.navigationController }
+        authenticationDidChange()
         tabController.delegate = self
-    }
-    
-    func start() {
-        childCoordinators.forEach { $0.start() }
     }
     
 }
@@ -46,9 +29,39 @@ class ApplicationController: NSObject {
 extension ApplicationController: AuthenticationDelegate {
     
     func authenticationDidChange() {
-        for case let coordinator as AuthenticationDelegate in childCoordinators {
-            coordinator.authenticationDidChange()
+        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
+        restaurantsCoordinator.start()
+        
+        if Database.shared.isLoggedIn {
+            let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
+            
+            exploreCoordinator.authenticationDelegate = self
+            exploreCoordinator.start()
+            
+            let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
+            
+            settingsCoordinator.authenticationDelegate = self
+            settingsCoordinator.start()
+            
+            childCoordinators = [
+                restaurantsCoordinator,
+                exploreCoordinator,
+                settingsCoordinator
+            ]
+        } else {
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: UINavigationController())
+            childCoordinators.append(authenticationCoordinator)
+            authenticationCoordinator.authenticationDelegate = self
+            authenticationCoordinator.start()
+            
+            childCoordinators = [
+                restaurantsCoordinator,
+                authenticationCoordinator,
+                authenticationCoordinator
+            ]
         }
+        
+        tabController.viewControllers = childCoordinators.map { $0.navigationController }
     }
     
 }

@@ -19,26 +19,27 @@ class ExploreCoordinator: Coordinator {
     }
     
     func start() {
-        navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange()
+//        authenticationDidChange()
+        let exploreVC = ExploreVC.make(coordinator: self)
+        navigationController.setViewControllers([exploreVC], animated: false)
     }
     
 }
 
-extension ExploreCoordinator: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
-        childCoordinators = []
-        navigationController.viewControllers = []
-        if Database.shared.isLoggedIn {
-            let exploreVC = ExploreVC.make(coordinator: self)
-            navigationController.setViewControllers([exploreVC], animated: false)
-        } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
-            childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.start()
-        }
-    }
-    
-}
+//extension ExploreCoordinator: AuthenticationDelegate {
+//
+//    func authenticationDidChange() {
+//        childCoordinators = []
+//        navigationController.viewControllers = []
+//        if Database.shared.isLoggedIn {
+//            let exploreVC = ExploreVC.make(coordinator: self)
+//            navigationController.setViewControllers([exploreVC], animated: false)
+//        } else {
+//            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+//            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+//            childCoordinators.append(authenticationCoordinator)
+//            authenticationCoordinator.start()
+//        }
+//    }
+//
+//}

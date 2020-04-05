@@ -19,8 +19,9 @@ class SettingsCoordinator: Coordinator {
     }
     
     func start() {
-        navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        authenticationDidChange()
+        let settingsVC = SettingsVC.make(coordinator: self)
+        navigationController.pushViewController(settingsVC, animated: false)
+//        authenticationDidChange()
     }
     
     func gotoProfile() {
@@ -48,21 +49,21 @@ class SettingsCoordinator: Coordinator {
     
 }
 
-extension SettingsCoordinator: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
-        childCoordinators = []
-        navigationController.viewControllers = []
-        
-        if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make(coordinator: self)
-            navigationController.pushViewController(settingsVC, animated: false)
-        } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
-            authenticationCoordinator.start()
-        }
-    }
-    
-}
+//extension SettingsCoordinator: AuthenticationDelegate {
+//
+//    func authenticationDidChange() {
+//        childCoordinators = []
+//        navigationController.viewControllers = []
+//
+//        if Database.shared.isLoggedIn {
+//            let settingsVC = SettingsVC.make(coordinator: self)
+//            navigationController.pushViewController(settingsVC, animated: false)
+//        } else {
+//            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+//            childCoordinators.append(authenticationCoordinator)
+//            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+//            authenticationCoordinator.start()
+//        }
+//    }
+//
+//}
