@@ -46,10 +46,8 @@ class ApplicationController: NSObject {
 extension ApplicationController: AuthenticationDelegate {
     
     func authenticationDidChange() {
-        childCoordinators.forEach {
-            if let coordinator = $0 as? AuthenticationDelegate {
-                coordinator.authenticationDidChange()
-            }
+        for case let coordinator as AuthenticationDelegate in childCoordinators {
+            coordinator.authenticationDidChange()
         }
     }
     
