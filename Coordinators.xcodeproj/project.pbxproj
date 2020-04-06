@@ -22,6 +22,7 @@
 		840FC850243BD7970048F4B0 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84F243BD7970048F4B0 /* DatabaseService.swift */; };
 		840FC853243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */; };
 		840FC855243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */; };
+		840FC857243BD8340048F4B0 /* MockGetRestaurantsFailureDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC856243BD8340048F4B0 /* MockGetRestaurantsFailureDatabase.swift */; };
 		844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E42436919D0058E554 /* SettingsCoordinator.swift */; };
 		844A66E72436920E0058E554 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E62436920E0058E554 /* SettingsVC.swift */; };
 		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
@@ -50,6 +51,7 @@
 		840FC84F243BD7970048F4B0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogoutFailureDatabase.swift; sourceTree = "<group>"; };
 		840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginFailureDatabase.swift; sourceTree = "<group>"; };
+		840FC856243BD8340048F4B0 /* MockGetRestaurantsFailureDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetRestaurantsFailureDatabase.swift; sourceTree = "<group>"; };
 		844A66E42436919D0058E554 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		844A66E62436920E0058E554 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -151,9 +153,10 @@
 		840FC851243BD7A60048F4B0 /* Databases */ = {
 			isa = PBXGroup;
 			children = (
-				840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */,
-				840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */,
 				844A66E8243692BC0058E554 /* Database.swift */,
+				840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */,
+				840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */,
+				840FC856243BD8340048F4B0 /* MockGetRestaurantsFailureDatabase.swift */,
 			);
 			path = Databases;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */,
 				840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */,
 				844A66E9243692BC0058E554 /* Database.swift in Sources */,
+				840FC857243BD8340048F4B0 /* MockGetRestaurantsFailureDatabase.swift in Sources */,
 				844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */,
 				840A918A2433AC9900796EE3 /* ExploreVC.swift in Sources */,
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
