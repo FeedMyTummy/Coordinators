@@ -17,6 +17,8 @@
 		840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */; };
 		840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A919D2433B21400796EE3 /* RestaurantsVC.swift */; };
 		840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */; };
+		840FC84B243BD6FE0048F4B0 /* AuthenticationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84A243BD6FE0048F4B0 /* AuthenticationObserver.swift */; };
+		840FC84D243BD75B0048F4B0 /* Notification-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */; };
 		844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E42436919D0058E554 /* SettingsCoordinator.swift */; };
 		844A66E72436920E0058E554 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E62436920E0058E554 /* SettingsVC.swift */; };
 		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
@@ -40,6 +42,8 @@
 		840A919B2433AD6700796EE3 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
 		840A919D2433B21400796EE3 /* RestaurantsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsVC.swift; sourceTree = "<group>"; };
 		840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCoordinator.swift; sourceTree = "<group>"; };
+		840FC84A243BD6FE0048F4B0 /* AuthenticationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationObserver.swift; sourceTree = "<group>"; };
+		840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification-Extensions.swift"; sourceTree = "<group>"; };
 		844A66E42436919D0058E554 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		844A66E62436920E0058E554 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 		840A91842433AC9900796EE3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				840FC849243BD6F10048F4B0 /* Helpers */,
 				840A919F2433C55300796EE3 /* Coordinators */,
 				840A91A22433C73B00796EE3 /* Controllers */,
 				844A66EE2436980A0058E554 /* Models */,
@@ -117,6 +122,15 @@
 				8457EB032437D59B000324D0 /* ProfileVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		840FC849243BD6F10048F4B0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				840FC84A243BD6FE0048F4B0 /* AuthenticationObserver.swift */,
+				840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		844A66EE2436980A0058E554 /* Models */ = {
@@ -206,6 +220,7 @@
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
 				844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,
+				840FC84D243BD75B0048F4B0 /* Notification-Extensions.swift in Sources */,
 				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
 				844A66F0243698210058E554 /* Restaurant.swift in Sources */,
 				840A91882433AC9900796EE3 /* SceneDelegate.swift in Sources */,
@@ -213,6 +228,7 @@
 				844A66E72436920E0058E554 /* SettingsVC.swift in Sources */,
 				8491D2BA243975D900786B84 /* AuthenticationCoordinator.swift in Sources */,
 				8457EB0224379AC3000324D0 /* ApplicationController.swift in Sources */,
+				840FC84B243BD6FE0048F4B0 /* AuthenticationObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
