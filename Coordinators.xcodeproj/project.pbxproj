@@ -19,6 +19,9 @@
 		840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */; };
 		840FC84B243BD6FE0048F4B0 /* AuthenticationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84A243BD6FE0048F4B0 /* AuthenticationObserver.swift */; };
 		840FC84D243BD75B0048F4B0 /* Notification-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */; };
+		840FC850243BD7970048F4B0 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC84F243BD7970048F4B0 /* DatabaseService.swift */; };
+		840FC853243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */; };
+		840FC855243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */; };
 		844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E42436919D0058E554 /* SettingsCoordinator.swift */; };
 		844A66E72436920E0058E554 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E62436920E0058E554 /* SettingsVC.swift */; };
 		844A66E9243692BC0058E554 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66E8243692BC0058E554 /* Database.swift */; };
@@ -44,6 +47,9 @@
 		840A91A02433C56B00796EE3 /* RestaurantsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCoordinator.swift; sourceTree = "<group>"; };
 		840FC84A243BD6FE0048F4B0 /* AuthenticationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationObserver.swift; sourceTree = "<group>"; };
 		840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification-Extensions.swift"; sourceTree = "<group>"; };
+		840FC84F243BD7970048F4B0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogoutFailureDatabase.swift; sourceTree = "<group>"; };
+		840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginFailureDatabase.swift; sourceTree = "<group>"; };
 		844A66E42436919D0058E554 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		844A66E62436920E0058E554 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		844A66E8243692BC0058E554 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 		840A91842433AC9900796EE3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				840FC84E243BD77E0048F4B0 /* Services */,
 				840FC849243BD6F10048F4B0 /* Helpers */,
 				840A919F2433C55300796EE3 /* Coordinators */,
 				840A91A22433C73B00796EE3 /* Controllers */,
@@ -94,7 +101,6 @@
 				840A918E2433AC9F00796EE3 /* Assets.xcassets */,
 				840A91902433AC9F00796EE3 /* LaunchScreen.storyboard */,
 				840A91932433AC9F00796EE3 /* Info.plist */,
-				844A66E8243692BC0058E554 /* Database.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -131,6 +137,25 @@
 				840FC84C243BD75B0048F4B0 /* Notification-Extensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		840FC84E243BD77E0048F4B0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				840FC84F243BD7970048F4B0 /* DatabaseService.swift */,
+				840FC851243BD7A60048F4B0 /* Databases */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		840FC851243BD7A60048F4B0 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				840FC852243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift */,
+				840FC854243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift */,
+				844A66E8243692BC0058E554 /* Database.swift */,
+			);
+			path = Databases;
 			sourceTree = "<group>";
 		};
 		844A66EE2436980A0058E554 /* Models */ = {
@@ -212,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840FC850243BD7970048F4B0 /* DatabaseService.swift in Sources */,
 				8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */,
 				840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */,
 				844A66E9243692BC0058E554 /* Database.swift in Sources */,
@@ -220,9 +246,11 @@
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
 				844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,
+				840FC853243BD7B30048F4B0 /* MockLogoutFailureDatabase.swift in Sources */,
 				840FC84D243BD75B0048F4B0 /* Notification-Extensions.swift in Sources */,
 				840A91A12433C56B00796EE3 /* RestaurantsCoordinator.swift in Sources */,
 				844A66F0243698210058E554 /* Restaurant.swift in Sources */,
+				840FC855243BD7CF0048F4B0 /* MockLoginFailureDatabase.swift in Sources */,
 				840A91882433AC9900796EE3 /* SceneDelegate.swift in Sources */,
 				840A919E2433B21400796EE3 /* RestaurantsVC.swift in Sources */,
 				844A66E72436920E0058E554 /* SettingsVC.swift in Sources */,
