@@ -26,6 +26,7 @@
 		8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457EB032437D59B000324D0 /* ProfileVC.swift */; };
 		847D8B12243AAAC100464C5F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D8B11243AAAC100464C5F /* Router.swift */; };
 		847D8B14243AAAD300464C5F /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D8B13243AAAD300464C5F /* NavigationRouter.swift */; };
+		847D8B16243AABAF00464C5F /* DebugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D8B15243AABAF00464C5F /* DebugVC.swift */; };
 		8491D2BA243975D900786B84 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491D2B9243975D900786B84 /* AuthenticationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		8457EB032437D59B000324D0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		847D8B11243AAAC100464C5F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		847D8B13243AAAD300464C5F /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		847D8B15243AABAF00464C5F /* DebugVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugVC.swift; sourceTree = "<group>"; };
 		8491D2B9243975D900786B84 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				844A66E62436920E0058E554 /* SettingsVC.swift */,
 				844A66EA2436932D0058E554 /* AuthenticationVC.swift */,
 				8457EB032437D59B000324D0 /* ProfileVC.swift */,
+				847D8B15243AABAF00464C5F /* DebugVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				844A66E9243692BC0058E554 /* Database.swift in Sources */,
 				844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */,
 				840A918A2433AC9900796EE3 /* ExploreVC.swift in Sources */,
+				847D8B16243AABAF00464C5F /* DebugVC.swift in Sources */,
 				840A91862433AC9900796EE3 /* AppDelegate.swift in Sources */,
 				844A66E52436919D0058E554 /* SettingsCoordinator.swift in Sources */,
 				840A919C2433AD6700796EE3 /* ExploreCoordinator.swift in Sources */,

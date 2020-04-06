@@ -44,18 +44,3 @@ class SettingsVC: DebugVC {
         }
     }
 }
-
-class DebugVC: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("\(String(describing: self)) viewDidLoad")
-    }
-    
-    deinit {
-        print("\(String(describing: self)) deinit")
-    }
-    
-}
-
-
