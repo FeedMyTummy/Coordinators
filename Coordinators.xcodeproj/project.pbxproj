@@ -24,7 +24,6 @@
 		844A66F0243698210058E554 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A66EF243698210058E554 /* Restaurant.swift */; };
 		8457EB0224379AC3000324D0 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457EB0124379AC3000324D0 /* ApplicationController.swift */; };
 		8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457EB032437D59B000324D0 /* ProfileVC.swift */; };
-		847D8B19243AB52800464C5F /* AuthenticationNotificationObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D8B18243AB52800464C5F /* AuthenticationNotificationObservable.swift */; };
 		8491D2BA243975D900786B84 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491D2B9243975D900786B84 /* AuthenticationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		844A66EF243698210058E554 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8457EB0124379AC3000324D0 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		8457EB032437D59B000324D0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		847D8B18243AB52800464C5F /* AuthenticationNotificationObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNotificationObservable.swift; sourceTree = "<group>"; };
 		8491D2B9243975D900786B84 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +80,6 @@
 		840A91842433AC9900796EE3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				847D8B17243AB51A00464C5F /* Protocols */,
 				840A919F2433C55300796EE3 /* Coordinators */,
 				840A91A22433C73B00796EE3 /* Controllers */,
 				844A66EE2436980A0058E554 /* Models */,
@@ -128,14 +125,6 @@
 				844A66EF243698210058E554 /* Restaurant.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		847D8B17243AB51A00464C5F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				847D8B18243AB52800464C5F /* AuthenticationNotificationObservable.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,7 +200,6 @@
 			files = (
 				8457EB042437D59B000324D0 /* ProfileVC.swift in Sources */,
 				840A919A2433ACBA00796EE3 /* Coordinator.swift in Sources */,
-				847D8B19243AB52800464C5F /* AuthenticationNotificationObservable.swift in Sources */,
 				844A66E9243692BC0058E554 /* Database.swift in Sources */,
 				844A66EB2436932D0058E554 /* AuthenticationVC.swift in Sources */,
 				840A918A2433AC9900796EE3 /* ExploreVC.swift in Sources */,

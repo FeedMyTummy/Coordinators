@@ -8,18 +8,27 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator {
+class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        addNotificationObserver(self)
     }
     
-    deinit {
-        removeNotificationDelegateObserver(self)
+    override func authenticationDidChange() {
+        childCoordinators = []
+        navigationController.viewControllers = []
+        
+        if Database.shared.isLoggedIn {
+            let settingsVC = SettingsVC.make(coordinator: self)
+            navigationController.pushViewController(settingsVC, animated: false)
+        } else {
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            childCoordinators.append(authenticationCoordinator)
+            authenticationCoordinator.start()
+        }
     }
     
     func start() {
@@ -41,27 +50,9 @@ class SettingsCoordinator: Coordinator {
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         Database.shared.logout {
             if case .success = $0 {
-                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
+                NotificationCenter.default.post(name: .AuthenticationDidChange, object: nil)
             }
             completion($0)
-        }
-    }
-    
-}
-
-extension SettingsCoordinator: AuthenticationNotificationObservable {
-    
-    @objc func authenticationDidChange() {
-        childCoordinators = []
-        navigationController.viewControllers = []
-        
-        if Database.shared.isLoggedIn {
-            let settingsVC = SettingsVC.make(coordinator: self)
-            navigationController.pushViewController(settingsVC, animated: false)
-        } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.start()
         }
     }
     

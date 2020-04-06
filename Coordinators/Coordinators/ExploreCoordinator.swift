@@ -8,18 +8,13 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator {
+class ExploreCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        addNotificationObserver(self)
-    }
-    
-    deinit {
-        removeNotificationDelegateObserver(self)
     }
     
     func start() {
@@ -27,11 +22,7 @@ class ExploreCoordinator: Coordinator {
         authenticationDidChange()
     }
     
-}
-
-extension ExploreCoordinator: AuthenticationNotificationObservable {
-    
-    @objc func authenticationDidChange() {
+    override func authenticationDidChange() {
         childCoordinators = []
         navigationController.viewControllers = []
         if Database.shared.isLoggedIn {

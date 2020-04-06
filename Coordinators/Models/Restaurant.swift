@@ -13,5 +13,21 @@ struct Restaurant {
 }
 
 extension Notification.Name {
-    static let authenticationDidChange = Notification.Name("authenticationDidChange")
+    static let AuthenticationDidChange = Notification.Name("AuthenticationDidChangeNotification")
+}
+
+class AuthenticationObserver {
+    
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(authenticationDidChange), name: .AuthenticationDidChange, object: nil)
+    }
+    
+    @objc func authenticationDidChange() {
+        print("AuthenticationObserver: authenticationDidChange")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .AuthenticationDidChange, object: nil)
+    }
+    
 }

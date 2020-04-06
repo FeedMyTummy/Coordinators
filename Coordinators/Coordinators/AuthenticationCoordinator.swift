@@ -25,7 +25,7 @@ class AuthenticationCoordinator: Coordinator {
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
         Database.shared.login {  result in
             if case .success = result {
-                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
+                NotificationCenter.default.post(name: .AuthenticationDidChange, object: nil)
             }
             completion(result)
         }
@@ -34,7 +34,7 @@ class AuthenticationCoordinator: Coordinator {
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         Database.shared.logout { result in
             if case .success = result {
-                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
+                NotificationCenter.default.post(name: .AuthenticationDidChange, object: nil)
             }
             completion(result)
         }
