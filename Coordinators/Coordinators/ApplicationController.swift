@@ -1,5 +1,5 @@
 //
-//  ApplicationCoordinator.swift
+//  ApplicationController.swift
 //  Coordinators
 //
 //  Created by Nicolas Silva on 4/3/20.
