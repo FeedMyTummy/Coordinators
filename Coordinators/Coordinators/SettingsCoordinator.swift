@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator {
+class SettingsCoordinator: Coordinator, AuthenticationDelegate {
     
     var router: Router
     weak var authenticationDelegate: AuthenticationDelegate?
@@ -20,15 +20,13 @@ class SettingsCoordinator: Coordinator {
     }
     
     func present(animated: Bool, onDismissed: (() -> Void)?) {
-        childCoordinators = []
-        
         if Database.shared.isLoggedIn {
             let settingsVC = SettingsVC.make(coordinator: self)
-            router.present(settingsVC, animated: false)
+            router.present(settingsVC, animated: animated)
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(router: router)
             authenticationCoordinator.authenticationDelegate = authenticationDelegate
-            presentChild(authenticationCoordinator, animated: animated)
+            presentChild(authenticationCoordinator, animated: false)
         }
     }
     

@@ -12,6 +12,14 @@ protocol AuthenticationDelegate: class {
     func authenticationDidChange()
 }
 
+extension AuthenticationDelegate where Self: Coordinator {
+    func authenticationDidChange() {
+        childCoordinators = []
+        dismiss(animated: false)
+        present(animated: false, onDismissed: nil)
+    }
+}
+
 class AuthenticationCoordinator: Coordinator {
     
     var router: Router
