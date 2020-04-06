@@ -52,15 +52,12 @@ class ApplicationController: NSObject {
         
         
         tabController.delegate = self
+        childCoordinators.forEach { $0.present(animated: false, onDismissed: nil) }
         print("ApplicationController: init")
     }
     
     deinit {
         print("ApplicationController: deinit")
-    }
-    
-    func start() {
-        childCoordinators.forEach { $0.present(animated: false, onDismissed: nil) }
     }
     
 }
