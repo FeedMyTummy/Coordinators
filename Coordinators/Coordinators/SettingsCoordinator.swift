@@ -15,11 +15,11 @@ class SettingsCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        addAuthenticationDelegateObserver(self)
+        addNotificationObserver(self)
     }
     
     deinit {
-        removeAuthenticationDelegateObserver(self)
+        removeNotificationDelegateObserver(self)
     }
     
     func start() {
@@ -49,7 +49,7 @@ class SettingsCoordinator: Coordinator {
     
 }
 
-extension SettingsCoordinator: AuthenticationDelegate {
+extension SettingsCoordinator: AuthenticationNotificationObservable {
     
     @objc func authenticationDidChange() {
         childCoordinators = []
