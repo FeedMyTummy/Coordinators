@@ -24,7 +24,7 @@ class AuthenticationObserver {
     }
     
     func authenticationDidChange(status: AuthenticationStatus) {
-        print("AuthenticationObserver: authenticationDidChange: \(status)")
+        print("IF YOU SEE THIS, YOU FORGOT TO OVERRIDEauthenticationDidChange. P.S THE STATUS IS: \(status)")
     }
     
     deinit {
