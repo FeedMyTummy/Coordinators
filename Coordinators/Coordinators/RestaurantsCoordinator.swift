@@ -14,7 +14,7 @@ class RestaurantsCoordinator: Coordinator {
     var navigationController: UINavigationController
     let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController, databaseSource: DatabaseService = Database.shared) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
         self.navigationController = navigationController
         self.databaseSource = databaseSource
     }

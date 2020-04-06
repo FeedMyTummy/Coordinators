@@ -14,7 +14,7 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
     var navigationController: UINavigationController
     private let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController, databaseSource: DatabaseService = Database.shared) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
         self.navigationController = navigationController
         self.databaseSource = databaseSource
     }
@@ -33,7 +33,7 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
             let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
         case .loggeOut:
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }

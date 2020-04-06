@@ -13,17 +13,18 @@ class ApplicationController: NSObject {
     var childCoordinators = [Coordinator]()
     let tabController: UITabBarController
     var rootViewController: UIViewController { tabController }
+    let databaseSource: DatabaseService = Database.shared
     
     override init() {
         tabController = UITabBarController()
         
         super.init()
         
-        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
+        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
         
-        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
+        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
         
-        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
+        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
                 
         childCoordinators = [
             restaurantsCoordinator,
