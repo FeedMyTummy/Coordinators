@@ -21,4 +21,5 @@ extension AuthenticationNotificationObservable {
     func removeNotificationDelegateObserver(_ observer: Any) {
         NotificationCenter.default.removeObserver(self, name: .authenticationDidChange, object: nil)
     }
+    
 }
