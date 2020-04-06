@@ -13,16 +13,70 @@ enum DataBaseError: Error {
     case unknown
 }
 
-final class Database {
+enum AuthenticationStatus {
+    case loggedIn
+    case loggeOut
+}
+
+protocol DatabaseService {
+    var isLoggedIn: AuthenticationStatus { get }
     
-    private var _isLoggedIn = false
+    func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void)
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void)
+}
+
+final class Database: DatabaseService {
+    
+    private var _isLoggedIn = AuthenticationStatus.loggeOut
     
     static let shared = Database()
     
-    var isLoggedIn: Bool { _isLoggedIn }
+    var isLoggedIn: AuthenticationStatus { _isLoggedIn }
     
     private init() { /* EMPTY */ }
     
+    
+    func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void) {
+        let restaurants = [
+            Restaurant(name: "A"),
+            Restaurant(name: "B"),
+            Restaurant(name: "C"),
+            Restaurant(name: "D")
+        ]
+
+        completion(.success(restaurants))
+    }
+    
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        if simulateSuccess() {
+            _isLoggedIn = .loggedIn
+            completion(.success(()))
+        } else {
+            completion(.failure(DataBaseError.authentication))
+        }
+    }
+    
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        if simulateSuccess() {
+            _isLoggedIn = .loggeOut
+            completion(.success(()))
+        } else {
+            completion(.failure(DataBaseError.unknown))
+        }
+    }
+    
+    func simulateSuccess() -> Bool { true }
+    
+}
+
+final class MockLogoutFailureDatabase: DatabaseService {
+    
+    private var _isLoggedIn = AuthenticationStatus.loggeOut
+    var isLoggedIn: AuthenticationStatus { _isLoggedIn }
+    static let shared = MockLogoutFailureDatabase()
+    
+    private init() { /* EMPTY */ }
     
     func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void) {
         let restaurants = [
@@ -36,23 +90,40 @@ final class Database {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        if simulateSuccess() {
-            _isLoggedIn = true
-            completion(.success(()))
-        } else {
-            completion(.failure(DataBaseError.authentication))
-        }
+        completion(.success(()))
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        if simulateSuccess() {
-            _isLoggedIn = false
-            completion(.success(()))
-        } else {
-            completion(.failure(DataBaseError.unknown))
-        }
+        completion(.failure(DataBaseError.unknown))
     }
     
-    func simulateSuccess() -> Bool { Int.random(in: 0...1).isMultiple(of: 2) }
+}
+
+final class MockLoginFailureDatabase: DatabaseService {
+    
+    private var _isLoggedIn = AuthenticationStatus.loggeOut
+    var isLoggedIn: AuthenticationStatus { _isLoggedIn }
+    static let shared = MockLoginFailureDatabase()
+    
+    private init() { /* EMPTY */ }
+    
+    func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void) {
+        let restaurants = [
+            Restaurant(name: "A"),
+            Restaurant(name: "B"),
+            Restaurant(name: "C"),
+            Restaurant(name: "D")
+        ]
+        
+        completion(.success(restaurants))
+    }
+    
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        completion(.failure(DataBaseError.authentication))
+    }
+    
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
+        completion(.success(()))
+    }
     
 }

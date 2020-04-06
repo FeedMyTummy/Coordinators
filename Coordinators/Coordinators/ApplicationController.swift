@@ -13,19 +13,18 @@ class ApplicationController: NSObject {
     var childCoordinators = [Coordinator]()
     let tabController: UITabBarController
     var rootViewController: UIViewController { tabController }
+    let databaseSource: DatabaseService = Database.shared
     
     override init() {
         tabController = UITabBarController()
         
         super.init()
         
-        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
+        let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
         
-        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-        exploreCoordinator.authenticationDelegate = self
+        let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
         
-        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
-        settingsCoordinator.authenticationDelegate = self
+        let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController(), databaseSource: databaseSource)
                 
         childCoordinators = [
             restaurantsCoordinator,
@@ -35,20 +34,7 @@ class ApplicationController: NSObject {
         
         tabController.viewControllers = childCoordinators.map { $0.navigationController }
         tabController.delegate = self
-    }
-    
-    func start() {
         childCoordinators.forEach { $0.start() }
-    }
-    
-}
-
-extension ApplicationController: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
-        for case let coordinator as AuthenticationDelegate in childCoordinators {
-            coordinator.authenticationDidChange()
-        }
     }
     
 }

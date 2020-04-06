@@ -8,18 +8,15 @@
 
 import UIKit
 
-protocol AuthenticationDelegate: class {
-    func authenticationDidChange()
-}
-
 class AuthenticationCoordinator: Coordinator {
     
-    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
         self.navigationController = navigationController
+        self.databaseSource = databaseSource
     }
     
     func start() {
@@ -28,18 +25,18 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login { [weak self] result in
+        databaseSource.login {  result in
             if case .success = result {
-                self?.authenticationDelegate?.authenticationDidChange()
+                NotificationCenter.default.post(name: .AuthenticationDidLogin, object: nil)
             }
             completion(result)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout { [weak self] result in
+        databaseSource.logout { result in
             if case .success = result {
-                self?.authenticationDelegate?.authenticationDidChange()
+                NotificationCenter.default.post(name: .AuthenticationDidLoggout, object: nil)
             }
             completion(result)
         }

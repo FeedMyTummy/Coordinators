@@ -8,34 +8,32 @@
 
 import UIKit
 
-class ExploreCoordinator: Coordinator {
+class ExploreCoordinator: AuthenticationObserver, Coordinator {
     
-    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    private let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
         self.navigationController = navigationController
+        self.databaseSource = databaseSource
     }
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange()
+        authenticationDidChange(status: databaseSource.isLoggedIn)
     }
     
-}
-
-extension ExploreCoordinator: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
+    override func authenticationDidChange(status: AuthenticationStatus) {
         childCoordinators = []
         navigationController.viewControllers = []
-        if Database.shared.isLoggedIn {
+        
+        switch status {
+        case .loggedIn:
             let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
-        } else {
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
+        case .loggeOut:
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }
