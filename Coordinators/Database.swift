@@ -13,13 +13,26 @@ enum DataBaseError: Error {
     case unknown
 }
 
-final class Database {
+enum AuthenticationStatus {
+    case loggedIn
+    case loggeOut
+}
+
+protocol DatabaseService {
+    var isLoggedIn: AuthenticationStatus { get }
     
-    private var _isLoggedIn = false
+    func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void)
+    func login(_ completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(_ completion: @escaping (Result<Void, Error>) -> Void)
+}
+
+final class Database: DatabaseService {
+    
+    private var _isLoggedIn = AuthenticationStatus.loggeOut
     
     static let shared = Database()
     
-    var isLoggedIn: Bool { _isLoggedIn }
+    var isLoggedIn: AuthenticationStatus { _isLoggedIn }
     
     private init() { /* EMPTY */ }
     
@@ -37,7 +50,7 @@ final class Database {
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
         if simulateSuccess() {
-            _isLoggedIn = true
+            _isLoggedIn = .loggedIn
             completion(.success(()))
         } else {
             completion(.failure(DataBaseError.authentication))
@@ -46,7 +59,7 @@ final class Database {
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         if simulateSuccess() {
-            _isLoggedIn = false
+            _isLoggedIn = .loggeOut
             completion(.success(()))
         } else {
             completion(.failure(DataBaseError.unknown))

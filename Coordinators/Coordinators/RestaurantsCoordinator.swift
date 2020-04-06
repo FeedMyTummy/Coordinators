@@ -12,13 +12,15 @@ class RestaurantsCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService = Database.shared) {
         self.navigationController = navigationController
+        self.databaseSource = databaseSource
     }
     
     func start() {
-        Database.shared.getRestaurants { [weak self] restaurants in
+        databaseSource.getRestaurants { [weak self] restaurants in
             guard let self = self else { return }
             switch restaurants {
             case .success(let restaurants):

@@ -12,23 +12,27 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    private let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService = Database.shared) {
         self.navigationController = navigationController
+        self.databaseSource = databaseSource
     }
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange()
+        authenticationDidChange(status: databaseSource.isLoggedIn)
     }
     
-    override func authenticationDidChange() {
+    override func authenticationDidChange(status: AuthenticationStatus) {
         childCoordinators = []
         navigationController.viewControllers = []
-        if Database.shared.isLoggedIn {
+        
+        switch status {
+        case .loggedIn:
             let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
-        } else {
+        case .loggeOut:
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()

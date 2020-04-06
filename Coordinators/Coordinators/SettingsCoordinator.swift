@@ -12,19 +12,22 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    private let databaseSource: DatabaseService
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, databaseSource: DatabaseService = Database.shared) {
         self.navigationController = navigationController
+        self.databaseSource = databaseSource
     }
     
-    override func authenticationDidChange() {
+    override func authenticationDidChange(status: AuthenticationStatus) {
         childCoordinators = []
         navigationController.viewControllers = []
         
-        if Database.shared.isLoggedIn {
+        switch status {
+        case .loggedIn:
             let settingsVC = SettingsVC.make(coordinator: self)
             navigationController.pushViewController(settingsVC, animated: false)
-        } else {
+        case .loggeOut:
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
@@ -33,7 +36,7 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        authenticationDidChange()
+        authenticationDidChange(status: databaseSource.isLoggedIn)
     }
     
     func gotoProfile() {
@@ -42,15 +45,15 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login {
+        databaseSource.login {
             completion($0)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout {
+        databaseSource.logout {
             if case .success = $0 {
-                NotificationCenter.default.post(name: .AuthenticationDidChange, object: nil)
+                NotificationCenter.default.post(name: .AuthenticationDidLoggout, object: nil)
             }
             completion($0)
         }
