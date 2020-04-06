@@ -10,12 +10,16 @@ import UIKit
 
 class ExploreCoordinator: Coordinator {
     
-    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        addAuthenticationDelegateObserver(self)
+    }
+    
+    deinit {
+        removeAuthenticationDelegateObserver(self)
     }
     
     func start() {
@@ -27,7 +31,7 @@ class ExploreCoordinator: Coordinator {
 
 extension ExploreCoordinator: AuthenticationDelegate {
     
-    func authenticationDidChange() {
+    @objc func authenticationDidChange() {
         childCoordinators = []
         navigationController.viewControllers = []
         if Database.shared.isLoggedIn {
@@ -35,7 +39,6 @@ extension ExploreCoordinator: AuthenticationDelegate {
             navigationController.setViewControllers([exploreVC], animated: false)
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }

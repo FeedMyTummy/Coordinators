@@ -22,10 +22,8 @@ class ApplicationController: NSObject {
         let restaurantsCoordinator = RestaurantsCoordinator(navigationController: UINavigationController())
         
         let exploreCoordinator = ExploreCoordinator(navigationController: UINavigationController())
-        exploreCoordinator.authenticationDelegate = self
         
         let settingsCoordinator = SettingsCoordinator(navigationController: UINavigationController())
-        settingsCoordinator.authenticationDelegate = self
                 
         childCoordinators = [
             restaurantsCoordinator,
@@ -35,20 +33,7 @@ class ApplicationController: NSObject {
         
         tabController.viewControllers = childCoordinators.map { $0.navigationController }
         tabController.delegate = self
-    }
-    
-    func start() {
         childCoordinators.forEach { $0.start() }
-    }
-    
-}
-
-extension ApplicationController: AuthenticationDelegate {
-    
-    func authenticationDidChange() {
-        for case let coordinator as AuthenticationDelegate in childCoordinators {
-            coordinator.authenticationDidChange()
-        }
     }
     
 }

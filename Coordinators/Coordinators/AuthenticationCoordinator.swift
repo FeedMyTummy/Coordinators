@@ -8,13 +8,8 @@
 
 import UIKit
 
-protocol AuthenticationDelegate: class {
-    func authenticationDidChange()
-}
-
 class AuthenticationCoordinator: Coordinator {
     
-    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -28,18 +23,18 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login { [weak self] result in
+        Database.shared.login {  result in
             if case .success = result {
-                self?.authenticationDelegate?.authenticationDidChange()
+                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
             }
             completion(result)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout { [weak self] result in
+        Database.shared.logout { result in
             if case .success = result {
-                self?.authenticationDelegate?.authenticationDidChange()
+                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
             }
             completion(result)
         }

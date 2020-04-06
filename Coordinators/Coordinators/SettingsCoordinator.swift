@@ -10,12 +10,16 @@ import UIKit
 
 class SettingsCoordinator: Coordinator {
     
-    weak var authenticationDelegate: AuthenticationDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        addAuthenticationDelegateObserver(self)
+    }
+    
+    deinit {
+        removeAuthenticationDelegateObserver(self)
     }
     
     func start() {
@@ -29,18 +33,15 @@ class SettingsCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.login { [weak self] in
-            if case .success = $0 {
-                self?.authenticationDelegate?.authenticationDidChange()
-            }
+        Database.shared.login {
             completion($0)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        Database.shared.logout { [weak self] in
+        Database.shared.logout {
             if case .success = $0 {
-                self?.authenticationDelegate?.authenticationDidChange()
+                NotificationCenter.default.post(name: .authenticationDidChange, object: nil)
             }
             completion($0)
         }
@@ -50,7 +51,7 @@ class SettingsCoordinator: Coordinator {
 
 extension SettingsCoordinator: AuthenticationDelegate {
     
-    func authenticationDidChange() {
+    @objc func authenticationDidChange() {
         childCoordinators = []
         navigationController.viewControllers = []
         
@@ -60,7 +61,6 @@ extension SettingsCoordinator: AuthenticationDelegate {
         } else {
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController)
             childCoordinators.append(authenticationCoordinator)
-            authenticationCoordinator.authenticationDelegate = authenticationDelegate
             authenticationCoordinator.start()
         }
     }

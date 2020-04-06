@@ -11,3 +11,7 @@ import Foundation
 struct Restaurant {
     let name: String
 }
+
+extension Notification.Name {
+    static let authenticationDidChange = Notification.Name("authenticationDidChange")
+}
