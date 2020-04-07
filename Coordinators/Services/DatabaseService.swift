@@ -19,7 +19,7 @@ enum AuthenticationStatus {
 }
 
 protocol DatabaseService {
-    var isLoggedIn: AuthenticationStatus { get }
+    var loginStatus: AuthenticationStatus { get }
     
     func getRestaurants(_ completion: @escaping (Result<[Restaurant], Error>) -> Void)
     func login(_ completion: @escaping (Result<Void, Error>) -> Void)

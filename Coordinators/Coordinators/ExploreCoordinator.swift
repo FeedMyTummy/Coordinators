@@ -21,7 +21,7 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange(status: databaseSource.isLoggedIn)
+        authenticationDidChange(status: databaseSource.loginStatus)
     }
     
     override func authenticationDidChange(status: AuthenticationStatus) {

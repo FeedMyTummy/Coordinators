@@ -36,7 +36,7 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        authenticationDidChange(status: databaseSource.isLoggedIn)
+        authenticationDidChange(status: databaseSource.loginStatus)
     }
     
     func gotoProfile() {

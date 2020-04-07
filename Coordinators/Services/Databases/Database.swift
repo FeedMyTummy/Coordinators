@@ -10,11 +10,11 @@ import Foundation
 
 final class Database: DatabaseService {
     
-    private var _isLoggedIn = AuthenticationStatus.loggedOut
+    private var _loginStatus = AuthenticationStatus.loggedOut
     
     static let shared = Database()
     
-    var isLoggedIn: AuthenticationStatus { _isLoggedIn }
+    var loginStatus: AuthenticationStatus { _loginStatus }
     
     private init() { /* EMPTY */ }
     
@@ -32,7 +32,7 @@ final class Database: DatabaseService {
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
         if simulateSuccess() {
-            _isLoggedIn = .loggedIn
+            _loginStatus = .loggedIn
             completion(.success(()))
         } else {
             completion(.failure(DataBaseError.authentication))
@@ -41,7 +41,7 @@ final class Database: DatabaseService {
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         if simulateSuccess() {
-            _isLoggedIn = .loggedOut
+            _loginStatus = .loggedOut
             completion(.success(()))
         } else {
             completion(.failure(DataBaseError.unknown))
