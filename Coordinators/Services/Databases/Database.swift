@@ -10,7 +10,7 @@ import Foundation
 
 final class Database: DatabaseService {
     
-    private var _isLoggedIn = AuthenticationStatus.loggeOut
+    private var _isLoggedIn = AuthenticationStatus.loggedOut
     
     static let shared = Database()
     
@@ -41,7 +41,7 @@ final class Database: DatabaseService {
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
         if simulateSuccess() {
-            _isLoggedIn = .loggeOut
+            _isLoggedIn = .loggedOut
             completion(.success(()))
         } else {
             completion(.failure(DataBaseError.unknown))

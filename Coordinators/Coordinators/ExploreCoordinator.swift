@@ -32,7 +32,7 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
         case .loggedIn:
             let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
-        case .loggeOut:
+        case .loggedOut:
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()

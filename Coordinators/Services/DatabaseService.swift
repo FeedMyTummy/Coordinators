@@ -15,7 +15,7 @@ enum DataBaseError: Error {
 
 enum AuthenticationStatus {
     case loggedIn
-    case loggeOut
+    case loggedOut
 }
 
 protocol DatabaseService {

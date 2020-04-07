@@ -20,7 +20,7 @@ class AuthenticationObserver {
     }
     
     @objc private func loggoutSuccess() {
-        authenticationDidChange(status: .loggeOut)
+        authenticationDidChange(status: .loggedOut)
     }
     
     func authenticationDidChange(status: AuthenticationStatus) {

@@ -10,7 +10,7 @@ import Foundation
 
 final class MockLogoutFailureDatabase: DatabaseService {
     
-    private var _isLoggedIn = AuthenticationStatus.loggeOut
+    private var _isLoggedIn = AuthenticationStatus.loggedOut
     var isLoggedIn: AuthenticationStatus { _isLoggedIn }
     static let shared = MockLogoutFailureDatabase()
     

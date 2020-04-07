@@ -27,7 +27,7 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
         case .loggedIn:
             let settingsVC = SettingsVC.make(coordinator: self)
             navigationController.pushViewController(settingsVC, animated: false)
-        case .loggeOut:
+        case .loggedOut:
             let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
