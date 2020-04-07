@@ -12,11 +12,11 @@ class AuthenticationCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    let databaseSource: DatabaseService
+    let databaseService: DatabaseService
     
-    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
+    init(navigationController: UINavigationController, databaseService: DatabaseService) {
         self.navigationController = navigationController
-        self.databaseSource = databaseSource
+        self.databaseService = databaseService
     }
     
     func start() {
@@ -25,7 +25,7 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        databaseSource.login {  result in
+        databaseService.login {  result in
             if case .success = result {
                 NotificationCenter.default.post(name: .AuthenticationDidLogin, object: nil)
             }
@@ -34,7 +34,7 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        databaseSource.logout { result in
+        databaseService.logout { result in
             if case .success = result {
                 NotificationCenter.default.post(name: .AuthenticationDidLoggout, object: nil)
             }

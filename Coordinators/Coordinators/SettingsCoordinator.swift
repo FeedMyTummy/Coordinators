@@ -12,11 +12,11 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    private let databaseSource: DatabaseService
+    private let databaseService: DatabaseService
     
-    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
+    init(navigationController: UINavigationController, databaseService: DatabaseService) {
         self.navigationController = navigationController
-        self.databaseSource = databaseSource
+        self.databaseService = databaseService
     }
     
     override func authenticationDidChange(status: AuthenticationStatus) {
@@ -28,7 +28,7 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
             let settingsVC = SettingsVC.make(coordinator: self)
             navigationController.pushViewController(settingsVC, animated: false)
         case .loggedOut:
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseService: databaseService)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }
@@ -36,7 +36,7 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "person"), tag: 2)
-        authenticationDidChange(status: databaseSource.loginStatus)
+        authenticationDidChange(status: databaseService.loginStatus)
     }
     
     func gotoProfile() {
@@ -45,13 +45,13 @@ class SettingsCoordinator: AuthenticationObserver, Coordinator {
     }
     
     func login(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        databaseSource.login {
+        databaseService.login {
             completion($0)
         }
     }
     
     func logout(_ completion: @escaping (Result<Void, Error>) -> Void) {
-        databaseSource.logout {
+        databaseService.logout {
             if case .success = $0 {
                 NotificationCenter.default.post(name: .AuthenticationDidLoggout, object: nil)
             }

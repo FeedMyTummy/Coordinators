@@ -12,16 +12,16 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    private let databaseSource: DatabaseService
+    private let databaseService: DatabaseService
     
-    init(navigationController: UINavigationController, databaseSource: DatabaseService) {
+    init(navigationController: UINavigationController, databaseService: DatabaseService) {
         self.navigationController = navigationController
-        self.databaseSource = databaseSource
+        self.databaseService = databaseService
     }
     
     func start() {
         navigationController.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "map"), tag: 2)
-        authenticationDidChange(status: databaseSource.loginStatus)
+        authenticationDidChange(status: databaseService.loginStatus)
     }
     
     override func authenticationDidChange(status: AuthenticationStatus) {
@@ -33,7 +33,7 @@ class ExploreCoordinator: AuthenticationObserver, Coordinator {
             let exploreVC = ExploreVC.make(coordinator: self)
             navigationController.setViewControllers([exploreVC], animated: false)
         case .loggedOut:
-            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseSource: databaseSource)
+            let authenticationCoordinator = AuthenticationCoordinator(navigationController: navigationController, databaseService: databaseService)
             childCoordinators.append(authenticationCoordinator)
             authenticationCoordinator.start()
         }
